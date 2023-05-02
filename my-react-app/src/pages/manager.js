@@ -17,6 +17,15 @@ function Manager() {
                     <Link to="/manager/menuitems">
                         <button type="button" class="btn btn-primary btn-lg">Menu Items</button>
                     </Link>
+                    <Link to="/manager/xzreport">
+                        <button type="button" className="btn btn-primary btn-lg">XZ Report</button>
+                    </Link>
+                    <Link to="/manager/restockreport">
+                        <button type="button" className="btn btn-primary btn-lg">Restock Report</button>
+                    </Link>
+                    <Link to="/manager/salesreport">
+                        <button type="button" className="btn btn-primary btn-lg">Sales Report</button>
+                    </Link>
                 </div>
             </div>
             <footer class="foot">

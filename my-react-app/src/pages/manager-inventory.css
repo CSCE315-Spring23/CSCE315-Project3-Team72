@@ -6,7 +6,7 @@
 }
 
 .input-wrapper {
-    width: 80%;
+    /*width: 80%;*/
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -17,6 +17,12 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    gap: 200px;
 }
 
 .inputs {
@@ -32,4 +38,25 @@
     display: flex;
     justify-content: center;
     gap: 50px;
+    margin-bottom: 50px;
+}
+
+#inventory-list {
+    position: relative;
+    height: 700px;
+    overflow: auto;
+}
+
+.inventory-list-scrollspy {
+    position: relative;
+    height: 700px;
+    overflow: auto;
+}
+
+.button-container {
+    margin: 0;
+}
+
+.bold {
+    font-weight: bold;
 }

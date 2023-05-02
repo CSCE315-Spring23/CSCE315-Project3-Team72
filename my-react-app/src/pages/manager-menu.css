@@ -6,7 +6,7 @@
 }
 
 .input-wrapper {
-    width: 80%;
+    /*width: 80%;*/
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -17,6 +17,11 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
 }
 
 .inputs {
@@ -32,4 +37,21 @@
     display: flex;
     justify-content: center;
     gap: 50px;
+    margin-bottom: 50px;
+}
+
+#menu-list {
+    position: relative;
+    height: 700px;
+    overflow: auto;
+}
+
+.menu-list-scrollspy {
+    position: relative;
+    height: 700px;
+    overflow: auto;
+}
+
+.bold {
+    font-weight: bold;
 }

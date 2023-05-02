@@ -5,8 +5,11 @@ import React, { useState, useEffect } from "react";
 import {View, TextInput} from 'react-native';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Manager from './pages/manager';
-import ManagerInventory from './pages/manager-inventory'
-import ManagerMenu from './pages/manager-menu'
+import ManagerInventory from './pages/manager-inventory';
+import ManagerMenu from './pages/manager-menu';
+import ManagerRestockReport from './pages/manager-restockreport';
+import ManagerXZReport from './pages/manager-xzreport';
+import ManagerSalesReport from './pages/manager-salesreport';
 
 class Menu {
 
@@ -559,6 +562,9 @@ function App() {
         <Route exact path='/manager' element={<Manager/>}/>
         <Route path='/manager/inventory' element={<ManagerInventory/>}/>
         <Route path='/manager/menuitems' element={<ManagerMenu/>}/>
+        <Route path='/manager/xzreport' element={<ManagerXZReport/>} />
+        <Route path='/manager/restockreport' element={<ManagerRestockReport/>} />
+        <Route path='/manager/salesreport' element={<ManagerSalesReport/>} />
       </Routes>
     </Router>
   );

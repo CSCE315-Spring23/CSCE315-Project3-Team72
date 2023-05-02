@@ -45,9 +45,41 @@ app.get('/user', (req, res) => {
                 menu.push(query_res.rows[i]);
             }
             const data = {menu: menu};
-            console.log(menu);
             res.json({message: menu});
         });
+});
+
+app.get('/query', async (req, res) => {
+    await pool
+        .query(req.query.cmd)
+        .then(query_res => {
+            res.json({result: query_res.rows});
+        });
+});
+
+app.get('/xz-report', (req, res) => {
+    pool
+        .query("SELECT * FROM transaction_history")
+        .then(result => {
+            res.json({list: result.rows.filter(transaction => transaction.date === req.query.date_str)});
+        });
+});
+
+app.get('/restock-report', (req, res) => {
+   pool
+       .query("SELECT * FROM inventory")
+       .then(result => {
+           console.log(result.rows.filter(item => item.quantity < item.min_amount));
+           res.json({list:result.rows.filter(item => item.quantity < item.min_amount)});
+       });
+});
+
+app.get('/sales-report', (req, res) => {
+   pool
+       .query(`SELECT * FROM transaction_history WHERE date >= '${req.query.start_date}' AND date <= '${req.query.end_date}'`)
+       .then(result => {
+           res.json({list: result.rows});
+       })
 });
 
 app.listen(port, () => {
