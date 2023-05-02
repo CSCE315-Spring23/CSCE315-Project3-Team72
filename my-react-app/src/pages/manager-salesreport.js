@@ -1,24 +1,24 @@
-import styled from 'styled-components';
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import './manager-salesreport.css';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 function ManagerSalesReport() {
     const serverEndpoint = "http://localhost:3001";
     const [salesList, setSalesList] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
+
     function generateSalesReport() {
         let start_str = document.getElementById(`#start-date-input`).value;
         let end_str = document.getElementById(`#end-date-input`).value;
 
-        if(start_str && end_str) {
+        if (start_str && end_str) {
             axios.get(serverEndpoint + '/sales-report', {
-                    params: {
-                        start_date: start_str,
-                        end_date: end_str
-                    }
-                })
+                params: {
+                    start_date: start_str,
+                    end_date: end_str
+                }
+            })
                 .then(function (resp) {
                     setSalesList(resp.data.list);
                     setTotalPrice(Number(resp.data.list.reduce((sum, sale) => sum + sale.total_price, 0).toFixed(2)));
@@ -38,9 +38,10 @@ function ManagerSalesReport() {
                         </div>
                         <div className="total-label"><span className="bold">Number of Sales:</span> {salesList.length}
                         </div>
-                        <input id="#start-date-input" type="text" Placeholder="Start Date (YYYY-MM-DD)" />
-                        <input id="#end-date-input" type="text" Placeholder="Start Date (YYYY-MM-DD)" />
-                        <button type="button" class="btn btn-secondary btn-lg generate-report-button" onClick={generateSalesReport}>
+                        <input id="#start-date-input" type="text" Placeholder="Start Date (YYYY-MM-DD)"/>
+                        <input id="#end-date-input" type="text" Placeholder="Start Date (YYYY-MM-DD)"/>
+                        <button type="button" class="btn btn-secondary btn-lg generate-report-button"
+                                onClick={generateSalesReport}>
                             Generate Report
                         </button>
                     </div>
@@ -48,7 +49,7 @@ function ManagerSalesReport() {
                         <div className="row report-list-scrollspy-container">
                             <h1 className="report-label">Sales Report</h1>
                             <div className="col-8">
-                                <div data-bs-spy="scroll"  data-bs-smooth-scroll="true"
+                                <div data-bs-spy="scroll" data-bs-smooth-scroll="true"
                                      className="report-list-scrollspy" tabIndex="0">
                                     {
                                         salesList.map(sale =>

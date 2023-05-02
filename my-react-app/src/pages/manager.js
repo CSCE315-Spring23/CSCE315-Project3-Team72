@@ -1,7 +1,6 @@
-import styled from 'styled-components';
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import './manager.css';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 function Manager() {
     var serverEndpoint = "http://localhost:3001/user";

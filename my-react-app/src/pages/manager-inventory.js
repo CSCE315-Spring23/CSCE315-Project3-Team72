@@ -1,7 +1,6 @@
-import styled from 'styled-components';
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import './manager-inventory.css';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import axios from "axios";
 
 const serverEndpoint = "http://localhost:3001";
@@ -14,11 +13,12 @@ function ManagerInventory() {
     function submitChanges() {
         let id_str = document.getElementById("#id-input").value;
 
-        if(id_str) {
+        if (id_str) {
             queries.forEach(input => {
                 let new_val = document.getElementById(`#${input}-input`).value;
-                if(new_val) {
-                    let sql_query = `UPDATE newinventory SET ${input}=`;
+                if (new_val) {
+                    let sql_query = `UPDATE newinventory
+                                     SET ${input}=`;
                     let new_val_str = '';
                     if (input === 'name') {
                         new_val_str = `'${new_val}'`;
@@ -32,13 +32,13 @@ function ManagerInventory() {
                             cmd: sql_query
                         }
                     })
-                    .then(function (resp) {
-                        console.log("Successfully changed this shit");
-                        window.location.reload();
-                    })
-                    .catch(function (error) {
-                        console.log("Error submitting changes to newinventory");
-                    });
+                        .then(function (resp) {
+                            console.log("Successfully changed this shit");
+                            window.location.reload();
+                        })
+                        .catch(function (error) {
+                            console.log("Error submitting changes to newinventory");
+                        });
                 }
             });
         } else {
@@ -50,19 +50,21 @@ function ManagerInventory() {
             let min_str = document.getElementById("#min-input").value;
             let max_str = document.getElementById("#max-input").value;
 
-            if(name_str && quantity_str && cost_str && min_str && max_str) {
-                let sql_cmd = `INSERT INTO newinventory (id, name, quantity, cost, min_amount, max_amount) VALUES(${new_id_str}, '${name_str}', ${quantity_str}, ${cost_str}, ${min_str}, ${max_str})`;
+            if (name_str && quantity_str && cost_str && min_str && max_str) {
+                let sql_cmd = `INSERT INTO newinventory (id, name, quantity, cost, min_amount, max_amount)
+                               VALUES (${new_id_str}, '${name_str}', ${quantity_str}, ${cost_str}, ${min_str},
+                                       ${max_str})`;
                 axios.get(serverEndpoint + '/query', {
                     params: {
                         cmd: sql_cmd
                     }
                 })
-                .then(function (resp) {
-                    window.location.reload();
-                })
-                .catch(function (error) {
-                    console.log("Error submitting changes to newinventory");
-                });
+                    .then(function (resp) {
+                        window.location.reload();
+                    })
+                    .catch(function (error) {
+                        console.log("Error submitting changes to newinventory");
+                    });
             } else {
                 console.log("incorrect format");
             }
@@ -71,19 +73,21 @@ function ManagerInventory() {
 
     function deleteItem() {
         let id_str = document.getElementById("#id-input").value;
-        if(id_str) {
-            let sql_cmd = `DELETE FROM newinventory WHERE id=${id_str}`;
+        if (id_str) {
+            let sql_cmd = `DELETE
+                           FROM newinventory
+                           WHERE id = ${id_str}`;
             axios.get(serverEndpoint + '/query', {
-                    params: {
-                        cmd: sql_cmd
-                    }
-                })
+                params: {
+                    cmd: sql_cmd
+                }
+            })
                 .then(function (resp) {
                     console.log(parseInt(id_str), cur_size);
                     reorderItems(parseInt(id_str))
                         .then(function (resp) {
-                        window.location.reload();
-                    })
+                            window.location.reload();
+                        })
                 })
                 .catch(function (resp) {
                     console.log("Error deleting inventory item");
@@ -92,15 +96,17 @@ function ManagerInventory() {
     }
 
     async function reorderItems(deleted_id) {
-        for(let i = deleted_id + 1; i <= cur_size; ++i) {
+        for (let i = deleted_id + 1; i <= cur_size; ++i) {
             console.log(`setting id = ${i} to id = ${i - 1}`);
-            let sql_cmd = `UPDATE newinventory SET id=${String(i - 1)} WHERE id=${String(i)}`;
+            let sql_cmd = `UPDATE newinventory
+                           SET id=${String(i - 1)}
+                           WHERE id = ${String(i)}`;
 
             await axios.get(serverEndpoint + '/query', {
-                    params: {
-                        cmd: sql_cmd
-                    }
-                })
+                params: {
+                    cmd: sql_cmd
+                }
+            })
                 .catch(function (error) {
                     console.log("Error reordering items after deleting");
                 })
@@ -120,10 +126,10 @@ Max Amount: 200
 
     function loadTable() {
         axios.get(serverEndpoint + '/query', {
-                params: {
-                    cmd: "SELECT * FROM newinventory"
-                }
-            })
+            params: {
+                cmd: "SELECT * FROM newinventory"
+            }
+        })
             .then(function (resp) {
                 inventory_table = resp.data.result;
                 cur_size = inventory_table.length;
@@ -145,18 +151,20 @@ Max Amount: 200
                         <div class="input-form">
                             <h2 class="input-form-label">Manage, edit or delete Inventory Items</h2>
                             <div class="inputs">
-                                <input id="#id-input" type="text" Placeholder="id, leave blank if adding" />
-                                <input id="#name-input" type="text" Placeholder="name" />
-                                <input id="#quantity-input" type="text" Placeholder="quantity" />
-                                <input id="#cost-input" type="text" Placeholder="cost" />
-                                <input id="#min-input" type="text" Placeholder="minimum amount" />
-                                <input id="#max-input" type="text" Placeholder="maximum amount" />
+                                <input id="#id-input" type="text" Placeholder="id, leave blank if adding"/>
+                                <input id="#name-input" type="text" Placeholder="name"/>
+                                <input id="#quantity-input" type="text" Placeholder="quantity"/>
+                                <input id="#cost-input" type="text" Placeholder="cost"/>
+                                <input id="#min-input" type="text" Placeholder="minimum amount"/>
+                                <input id="#max-input" type="text" Placeholder="maximum amount"/>
                             </div>
                             <div class="button-container">
                                 <button type="button" onClick={submitChanges}
-                                        className="btn btn-secondary submit-changes">Submit</button>
+                                        className="btn btn-secondary submit-changes">Submit
+                                </button>
                                 <button type="button" onClick={deleteItem}
-                                        className="btn btn-danger delete-button">Delete</button>
+                                        className="btn btn-danger delete-button">Delete
+                                </button>
 
                             </div>
                         </div>
@@ -186,11 +194,14 @@ Max Amount: 200
                                                         <br/>
                                                         <span className="bold">Price:</span> {inventory_item.cost}
                                                         <br/>
-                                                        <span className="bold">Quantity:</span> {inventory_item.quantity}
+                                                        <span
+                                                            className="bold">Quantity:</span> {inventory_item.quantity}
                                                         <br/>
-                                                        <span className="bold">Min Amount:</span> {inventory_item.min_amount}
+                                                        <span
+                                                            className="bold">Min Amount:</span> {inventory_item.min_amount}
                                                         <br/>
-                                                        <span className="bold">Max Amount:</span> {inventory_item.max_amount}
+                                                        <span
+                                                            className="bold">Max Amount:</span> {inventory_item.max_amount}
                                                     </p>
                                                 </div>
                                             </div>

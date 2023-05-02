@@ -1,7 +1,6 @@
-import styled from 'styled-components';
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import './manager-xzreport.css';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -9,15 +8,16 @@ function ManagerXZReport() {
     var serverEndpoint = "http://localhost:3001";
     const [transactions, setTransactions] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
+
     function generateXZReport() {
         let date = new Date();
         let date_str = date.toISOString().substring(0, date.toISOString().search('T'));
 
         axios.get(serverEndpoint + '/xz-report', {
-                params: {
-                    date_str: date_str
-                }
-            })
+            params: {
+                date_str: date_str
+            }
+        })
             .then(function (resp) {
                 setTransactions(resp.data.list);
                 setTotalPrice(Number(resp.data.list.reduce((sum, transaction) => sum + transaction.total_price, 0).toFixed(2)));
@@ -34,7 +34,8 @@ function ManagerXZReport() {
                     <div class="info-half">
                         <div className="total-label"><span className="bold">Transaction Total:</span> ${totalPrice}
                         </div>
-                        <button type="button" class="btn btn-secondary btn-lg generate-report-button" onClick={generateXZReport}>
+                        <button type="button" class="btn btn-secondary btn-lg generate-report-button"
+                                onClick={generateXZReport}>
                             Generate Report
                         </button>
                     </div>
@@ -42,7 +43,7 @@ function ManagerXZReport() {
                         <div className="row menu-list-scrollspy-container">
                             <h1 className="report-label">XZ Report</h1>
                             <div className="col-8">
-                                <div data-bs-spy="scroll"  data-bs-smooth-scroll="true"
+                                <div data-bs-spy="scroll" data-bs-smooth-scroll="true"
                                      className="transaction-list-scrollspy" tabIndex="0">
                                     {
                                         transactions.map(transaction =>
@@ -52,11 +53,13 @@ function ManagerXZReport() {
                                                     <p className="menu-item-id">
                                                         <span className="bold">Id:</span> {transaction.id}
                                                         <br/>
-                                                        <span className="bold">Items Sold:</span> {transaction.items_sold}
+                                                        <span
+                                                            className="bold">Items Sold:</span> {transaction.items_sold}
                                                         <br/>
                                                         <span className="bold">Employee:</span> {transaction.employee}
                                                         <br/>
-                                                        <span className="bold">Total Price:</span> {transaction.total_price}
+                                                        <span
+                                                            className="bold">Total Price:</span> {transaction.total_price}
                                                     </p>
                                                 </div>
                                             </div>

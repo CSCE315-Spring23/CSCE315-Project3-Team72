@@ -1,7 +1,6 @@
-import styled from 'styled-components';
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import './manager-menu.css';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 const serverEndpoint = "http://localhost:3001";
@@ -12,10 +11,10 @@ let queries = ["name", "price", "materials", "type"];
 const table_name = "menu_table";
 
 axios.get(serverEndpoint + '/query', {
-        params: {
-            cmd: "SELECT * FROM menu_table"
-        }
-    })
+    params: {
+        cmd: "SELECT * FROM menu_table"
+    }
+})
     .then(function (resp) {
         menu_table = resp.data.result;
         cur_size = menu_table.length;
@@ -28,11 +27,12 @@ function ManagerMenu() {
     function submitChanges() {
         let id_str = document.getElementById("#id-input").value;
 
-        if(id_str) {
+        if (id_str) {
             queries.forEach(input => {
                 let new_val = document.getElementById(`#${input}-input`).value;
-                if(new_val) {
-                    let sql_query = `UPDATE ${table_name} SET ${input}=`;
+                if (new_val) {
+                    let sql_query = `UPDATE ${table_name}
+                                     SET ${input}=`;
                     let new_val_str = '';
                     if (input === 'name' || input === 'materials' || input === 'type') {
                         new_val_str = `'${new_val}'`;
@@ -63,8 +63,9 @@ function ManagerMenu() {
             let materials_str = document.getElementById("#materials-input").value;
             let type_str = document.getElementById("#type-input").value;
 
-            if(name_str && price_str && materials_str && type_str) {
-                let sql_cmd = `INSERT INTO ${table_name} (id, name, cost, materials, type) VALUES(${new_id_str}, '${name_str}', ${price_str}, '${materials_str}', '${type_str}')`;
+            if (name_str && price_str && materials_str && type_str) {
+                let sql_cmd = `INSERT INTO ${table_name} (id, name, cost, materials, type)
+                               VALUES (${new_id_str}, '${name_str}', ${price_str}, '${materials_str}', '${type_str}')`;
                 axios.get(serverEndpoint + '/query', {
                     params: {
                         cmd: sql_cmd
@@ -84,8 +85,10 @@ function ManagerMenu() {
 
     function deleteItem() {
         let id_str = document.getElementById("#id-input").value;
-        if(id_str) {
-            let sql_cmd = `DELETE FROM ${table_name} WHERE id=${id_str}`;
+        if (id_str) {
+            let sql_cmd = `DELETE
+                           FROM ${table_name}
+                           WHERE id = ${id_str}`;
             axios.get(serverEndpoint + '/query', {
                 params: {
                     cmd: sql_cmd
@@ -105,15 +108,17 @@ function ManagerMenu() {
     }
 
     async function reorderItems(deleted_id) {
-        for(let i = deleted_id + 1; i <= cur_size; ++i) {
+        for (let i = deleted_id + 1; i <= cur_size; ++i) {
             console.log(`setting id = ${i} to id = ${i - 1}`);
-            let sql_cmd = `UPDATE menu_table SET id=${String(i - 1)} WHERE id=${String(i)}`;
+            let sql_cmd = `UPDATE menu_table
+                           SET id=${String(i - 1)}
+                           WHERE id = ${String(i)}`;
 
             await axios.get(serverEndpoint + '/query', {
-                    params: {
-                        cmd: sql_cmd
-                    }
-                })
+                params: {
+                    cmd: sql_cmd
+                }
+            })
                 .catch(function (error) {
                     console.log("Error reordering items after deleting");
                 })
@@ -128,11 +133,11 @@ function ManagerMenu() {
                         <div class="input-form">
                             <h2 class="input-form-label">Manage, edit or delete Menu Items</h2>
                             <div class="inputs">
-                                <input id="#id-input" type="text" Placeholder="id, leave blank if adding" />
-                                <input id="#name-input" type="text" Placeholder="name" />
-                                <input id="#price-input" type="text" Placeholder="cost" />
-                                <input id="#materials-input" type="text" Placeholder="materials" />
-                                <input id="#type-input" type="text" Placeholder="type" />
+                                <input id="#id-input" type="text" Placeholder="id, leave blank if adding"/>
+                                <input id="#name-input" type="text" Placeholder="name"/>
+                                <input id="#price-input" type="text" Placeholder="cost"/>
+                                <input id="#materials-input" type="text" Placeholder="materials"/>
+                                <input id="#type-input" type="text" Placeholder="type"/>
                             </div>
                             <div className="button-container">
                                 <button type="button" onClick={submitChanges}
@@ -152,13 +157,15 @@ function ManagerMenu() {
                             <div id="menu-list" class="list-group">
                                 {
                                     menu_table.map(menu_item =>
-                                        <a class="list-group-item list-group-item-action" href={`#${menu_item.id}`}>{menu_item.id}. {menu_item.name}</a>
+                                        <a class="list-group-item list-group-item-action"
+                                           href={`#${menu_item.id}`}>{menu_item.id}. {menu_item.name}</a>
                                     )
                                 }
                             </div>
                         </div>
                         <div class="col-8">
-                            <div data-bs-spy="scroll" data-bs-target="#menu-list" data-bs-smooth-scroll="true" class="menu-list-scrollspy" tabIndex="0">
+                            <div data-bs-spy="scroll" data-bs-target="#menu-list" data-bs-smooth-scroll="true"
+                                 class="menu-list-scrollspy" tabIndex="0">
                                 {
                                     menu_table.map(menu_item =>
                                         <div class="menu-item">
@@ -166,11 +173,11 @@ function ManagerMenu() {
                                             <div class="menu-item-description">
                                                 <p className="menu-item-id">
                                                     <span className="bold">Id:</span> {menu_item.id}
-                                                    <br />
+                                                    <br/>
                                                     <span className="bold">Price:</span> {menu_item.cost}
-                                                    <br />
+                                                    <br/>
                                                     <span className="bold">Materials:</span> {menu_item.materials}
-                                                    <br />
+                                                    <br/>
                                                     <span className="bold">Type:</span> {menu_item.type}
                                                 </p>
                                             </div>

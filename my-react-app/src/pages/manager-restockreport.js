@@ -1,12 +1,12 @@
-import styled from 'styled-components';
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import './manager-restockreport.css';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 function ManagerRestockReport() {
     const serverEndpoint = "http://localhost:3001";
     const [restockList, setRestockList] = useState([]);
+
     function generateRestockReport() {
         axios.get(serverEndpoint + '/restock-report')
             .then(function (resp) {
@@ -22,7 +22,8 @@ function ManagerRestockReport() {
             <div class="content">
                 <div class="content-container">
                     <div class="info-half">
-                        <button type="button" class="btn btn-secondary btn-lg generate-report-button" onClick={generateRestockReport}>
+                        <button type="button" class="btn btn-secondary btn-lg generate-report-button"
+                                onClick={generateRestockReport}>
                             Generate Report
                         </button>
                     </div>
@@ -30,7 +31,7 @@ function ManagerRestockReport() {
                         <div className="row report-list-scrollspy-container">
                             <h1 className="report-label">Restock Report</h1>
                             <div className="col-8">
-                                <div data-bs-spy="scroll"  data-bs-smooth-scroll="true"
+                                <div data-bs-spy="scroll" data-bs-smooth-scroll="true"
                                      className="report-list-scrollspy" tabIndex="0">
                                     {
                                         restockList.map(restockItem =>
@@ -40,9 +41,11 @@ function ManagerRestockReport() {
                                                     <p className="report-item-id">
                                                         <span className="bold">Id:</span> {restockItem.id}
                                                         <br/>
-                                                        <span className="bold">Minimum Amount:</span> {restockItem.min_amount}
+                                                        <span
+                                                            className="bold">Minimum Amount:</span> {restockItem.min_amount}
                                                         <br/>
-                                                        <span className="bold">Current Amount:</span> {restockItem.quantity}
+                                                        <span
+                                                            className="bold">Current Amount:</span> {restockItem.quantity}
                                                     </p>
                                                 </div>
                                             </div>
