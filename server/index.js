@@ -60,7 +60,7 @@ app.get('/', (req,res) =>
 });
 
 
-app.get('/menu', (req, res) => {
+app.get('/user', (req, res) => {
     menu = []; 
     pool
         .query('SELECT * FROM menu_table;')

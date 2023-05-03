@@ -11,6 +11,7 @@ import SandwichMenu from './Pages/SandwichMenu';
 import SweetsMenu from './Pages/SweetsMenu';
 import ExtrasMenu from './Pages/ExtrasMenu';
 import BasketMenu from './Pages/BasketMenu';
+import StaticMenu from './Pages/StaticMenu';
 import HomePage from './Pages/HomePage';
 import Header from './HelperClasses/Header';
 import { GoogleLogin } from '@react-oauth/google';
@@ -48,6 +49,7 @@ function App() {
         <Route path='/sweets' element={<SweetsMenu json={message} transaction={current_transaction}/>} />
         <Route path='/extras' element={<ExtrasMenu json={message} transaction={current_transaction}/>} />
         <Route path='/basket' element={<BasketMenu json={message} transaction={current_transaction}/>} />
+        <Route path='/menu' element={<StaticMenu json={message}/>} />
         
       </Routes>
       </Router>
