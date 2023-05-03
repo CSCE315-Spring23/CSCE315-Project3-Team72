@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import MenuItems from './ServerItems'
+import MenuItems from './CustomerItems.js'
 import './DropDown.css'
 
-function DropDown() {
+function CustomerDropDown() {
 
     const [click, setClick] = useState(false)
 
@@ -22,10 +22,10 @@ function DropDown() {
                             </li>
                         )
                     })}
-                </ul> 
+                </ul>
             </section>
         </>
     )
 }
 
-export default DropDown;
+export default CustomerDropDown;

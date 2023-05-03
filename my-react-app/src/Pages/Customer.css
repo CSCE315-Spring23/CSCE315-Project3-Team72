@@ -1,10 +1,41 @@
-.container {
+.customer-container {
     position: relative;
-    background: lightcoral;
-    height: 85px;
+    background: darkgoldenrod;
+    height: 30vh;
+    width: 50vh;
+    margin-top: 10vh;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 20px;
     box-shadow: 1px 2px 5px lightgray;
+}
+
+.customer-text {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 10vh;
+    width: 20vh;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    margin-right: 5vh;
+    color:black;
+}
+
+.customer-image {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 10vh;
+  width: 10vh;
+  margin-right: 5vh;
+  margin-left: 5vh;
+}
+
+.customer-button {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-right: 2vh;
 }

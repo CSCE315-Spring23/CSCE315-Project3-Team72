@@ -18,6 +18,10 @@ const MenuItems = [
     {
         title: 'Extras',
         path: '/extras'
+    },
+    {
+        title: 'Complete Transaction',
+        path: '/complete-transaction'
     }
 ]
 

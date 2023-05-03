@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Menu from "../HelperClasses/Menu"
 import {View, TextInput} from 'react-native';
 import styled from "styled-components";
+import './Customer.css'
 
 const Spacer = require('react-spacer');
 
@@ -81,14 +82,7 @@ const Tab = styled.button`
   `}
 `;
 
-function CustomerMenuItem() {
 
-    return(
-        <div class="container">
-            
-        </div>
-    )
-}
 
 
 function CustomerBurgerMenu(props) {
@@ -137,6 +131,8 @@ function CustomerBurgerMenu(props) {
         </View>
       );
     };
+
+    
   
     
     function updateText() {
@@ -309,12 +305,31 @@ function CustomerBurgerMenu(props) {
 
       console.log(message)
     }
+
+    function CustomerMenuItem(props) {
+
+      return(
+          <div class="customer-container">
+              <div class="customer-image"> 
+                <img src="https://www.freepnglogos.com/uploads/burger-png/burger-png-png-images-yellow-images-12.png"/>
+              </div>
+              <div class="customer-text">
+                Item name: {props.name}<br/>
+                Item price: {props.price}<br/>
+                Item description: {props.description}<br/>
+              </div>
+              <div class="customer-button">
+                <Button onClick={menuButton1Click}>{menuButton1Text}</Button>
+              </div>
+          </div>
+      )
+  }
   
     return (
       <div className="logo-background">
         <div class="menu-buttons">
         <div class="center">
-          <Button onClick={menuButton1Click}>{menuButton1Text}</Button>
+          <CustomerMenuItem name="Rev's Burger" description="It's a burger dumbass" price="$3.50"/>
           <Button onClick={menuButton2Click}>{menuButton2Text}</Button>
           <Button onClick={menuButton3Click}>{menuButton3Text}</Button>
           <Button onClick={menuButton4Click}>{menuButton4Text}</Button>

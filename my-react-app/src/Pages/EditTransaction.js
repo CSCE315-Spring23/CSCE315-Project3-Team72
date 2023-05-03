@@ -138,23 +138,37 @@ function EditTransaction(props) {
 
       console.log(message)
     }
+
+    function CompleteTransaction() {
+      var url = "http://localhost:3001";
+
+      var current_string = "";
+      for (var i = 0; i < current_transaction.get_size(); i++) {
+        current_string += current_transaction.item_amounts[i] + " ";
+        current_string += current_transaction.item_names[i] + "|";
+      }
+      current_string += current_transaction.get_total() + "|";
+      current_string += current_transaction.employee_name;
+      console.log(current_string);
+
+      /*const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: `${current_string}`
+    };
+
+      fetch(`${url}/post-transaction`, requestOptions)
+      .then((res) => res.json())
+      .then((data) => setMessage(data.message));
+
+      console.log(message)*/
+    }
   
     return (
       <div>
         <div class="menu-buttons">
         <div class="center">
-          <Button onClick={menuButton1Click}>{menuButton1Text}</Button>
-          <Button onClick={menuButton2Click}>{menuButton2Text}</Button>
-          <Button onClick={menuButton3Click}>{menuButton3Text}</Button>
-          <Button onClick={menuButton4Click}>{menuButton4Text}</Button>
-          <Button onClick={menuButton5Click}>{menuButton5Text}</Button>
-          <Button onClick={menuButton6Click}>{menuButton6Text}</Button>
-          <Button onClick={menuButton7Click}>{menuButton7Text}</Button>
-          <Button onClick={menuButton8Click}>{menuButton8Text}</Button>
-          <Button onClick={menuButton9Click}>{menuButton9Text}</Button>
-          <Button onClick={previousButtonClick}>Previous</Button>
-          <Button onClick={nextButtonClick}>Next</Button>
-          <Button onClick={TestStatus}>Test</Button>
+          <Button onClick={CompleteTransaction}>Test</Button>
         </div>
         <Spacer grow='0.1' />
         <MultilineTextInputExample value={orderText} onChange={e => updateOrderText(e.target.value)}/>

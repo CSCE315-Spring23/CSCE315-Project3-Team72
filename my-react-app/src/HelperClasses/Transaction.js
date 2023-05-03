@@ -5,10 +5,12 @@ class Transaction {
     item_amounts = [];
     item_ids = [];
     json;
+    employee_name;
   
     constructor (_json) {
       this.clear_transaciton();
       this.json = _json;
+      this.employee_name = "Shawn"
     }
   
     clear_transaciton() {
@@ -20,6 +22,10 @@ class Transaction {
   
     get_size() {
       return this.item_names.length;
+    }
+
+    set_employee_name(name) {
+      this.employee_name = name;
     }
   
     add_to_transaciton(id) {

@@ -11,10 +11,17 @@ import SandwichMenu from './Pages/SandwichMenu';
 import SweetsMenu from './Pages/SweetsMenu';
 import ExtrasMenu from './Pages/ExtrasMenu';
 import BasketMenu from './Pages/BasketMenu';
-import StaticMenu from './Pages/StaticMenu';
 import HomePage from './Pages/HomePage';
 import Header from './HelperClasses/Header';
 import { GoogleLogin } from '@react-oauth/google';
+import CustomerBurgerMenu from './Pages/CustomerBurgerMenu';
+import ManagerInventory from './Pages/manager-inventory';
+import ManagerMenu from './Pages/manager-menu';
+import ManagerRestockReport from './Pages/manager-restockreport';
+import ManagerXZReport from './Pages/manager-xzreport';
+import ManagerSalesReport from './Pages/manager-salesreport';
+import EditTransaction from './Pages/EditTransaction';
+import StaticMenu from './Pages/StaticMenu';
 
 
 function App() {
@@ -45,12 +52,18 @@ function App() {
       <Routes>
         <Route path='/'element={<HomePage/>}/>
         <Route path='/burger' element={<BurgerMenu json={message} transaction={current_transaction}/>} />
+        <Route path='/customer-burger' element={<CustomerBurgerMenu json={message} transaction={current_transaction}/>} />
         <Route path='/sandwich' element={<SandwichMenu json={message} transaction={current_transaction}/>} />
         <Route path='/sweets' element={<SweetsMenu json={message} transaction={current_transaction}/>} />
         <Route path='/extras' element={<ExtrasMenu json={message} transaction={current_transaction}/>} />
         <Route path='/basket' element={<BasketMenu json={message} transaction={current_transaction}/>} />
-        <Route path='/menu' element={<StaticMenu json={message}/>} />
-        
+        <Route path='/complete-transaction' element={<EditTransaction json={message} transaction={current_transaction}/>} />
+        <Route path='/static-menu' element={<StaticMenu json={message}/>} />
+        <Route path='/manager-inventory' element={<ManagerInventory/>}/>
+        <Route path='/manager-menu' element={<ManagerMenu/>}/>
+        <Route path='/manager-xz' element={<ManagerXZReport/>}/>
+        <Route path='/manager-restock' element={<ManagerRestockReport/>}/>
+        <Route path='/manager-sales' element={<ManagerSalesReport/>}/>
       </Routes>
       </Router>
     </>
