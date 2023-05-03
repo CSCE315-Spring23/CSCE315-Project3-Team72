@@ -9,8 +9,6 @@ const express = require('express');
 const app = express();
 const port = 3001;
 
-
-// Create pool
 const pool = new Pool({
     user: process.env.PSQL_USER,
     host: process.env.PSQL_HOST,
@@ -92,7 +90,11 @@ app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
 });
 
-
+/**
+ * Parses the transaction given from the front end, and then sends it to a function that adds the transaction to the transaction history table and also updates the inventory with the ingrediants from the transaction
+ * @param {*} str  
+ * @returns nothing
+ */
 function parse_transaction(str) {
   const itemCounts = {};
   const items_sold = str;
@@ -121,7 +123,11 @@ function parse_transaction(str) {
 
   countItemsSoldAndManageInventory(items_sold,itemCounts,employee,Price);
 }
-
+/**
+ * Updates the transaction history, and calls UpdateInventory() with the proper params
+ * @param {*} itemCounts  
+ * @returns nothing
+ */
   async function countItemsSoldAndManageInventory(items_sold,itemCounts,employee,price){
     //const TransactionNumber = await executeSQLCommand(`SELECT quantity FROM inventory WHERE name='${item}'`);
     const itemsSoldList = removeCharactersAfterSecondToLastPipe(items_sold);
@@ -146,7 +152,11 @@ function parse_transaction(str) {
     }
     UpdateInventory(itemCounts);
   }
-
+/**
+ * goes through each item, finds the ingrediants needed to make the item, and subtracts it from the inventory
+ * @param {*} itemCounts  
+ * @returns nothing
+ */
   async function UpdateInventory(itemCounts) {
     for (let item in itemCounts) {
       console.log("item being processed: "+item);
@@ -166,6 +176,11 @@ function parse_transaction(str) {
       }
     }
   }
+  /**
+ * executes the param as an sql command, and returns result
+ * @param {*} str 
+ * @returns whatever the sql command generates
+ */
   async function executeSQLCommand(sqlCommand) {
     try {
       const client = await pool.connect();
@@ -177,7 +192,11 @@ function parse_transaction(str) {
       console.error(err);
     } 
   }
-
+/**
+ * removes characters after second to last pipe so we can have a list of items sonl
+ * @param {*} str 
+ * @returns string of id after its been incremented and formatted
+ */
   function removeCharactersAfterSecondToLastPipe(str) {
     // Split the string by the '|' character
     const parts = str.split('|');
@@ -192,12 +211,21 @@ function parse_transaction(str) {
     
     return newStr;
   }
-
+/**
+ * increment and format the id so that we can use in in sql querys
+ * @param {*} str 
+ * @returns string of id after its been incremented and formatted
+ */
   function stripNonDigits(str) {
     const numericString = str.replace(/\P{N}/gu, ''); // replace all non-numeric characters with an empty string
     return numericString.replace(/\s+/g, ''); // remove all spaces from the resulting string
   }
 
+/**
+ * increment and format the id so that we can use in in sql querys
+ * @param {*} str 
+ * @returns string of id after its been incremented and formatted
+ */
   function stripNonDigitsAndIncrement(str) {
     const numericString = str.replace(/\P{N}/gu, ''); // replace all non-numeric characters with an empty string
     const numericValue = parseInt(numericString, 10); // convert numeric string to a number
@@ -205,19 +233,11 @@ function parse_transaction(str) {
     return String(incrementedValue); // convert incremented value back to a string and return it
   }
 
-  /*function parseOrderString(orderString) {
-    const itemsAndQuantities = orderString.split('|');
-    const itemCounts = {};
-    for (let i = 0; i < itemsAndQuantities.length - 2; i++) {
-      const [quantityString, itemName] = itemsAndQuantities[i].split(' ');
-      const quantity = parseInt(quantityString);
-      itemCounts[itemName] = quantity;
-    }
-    const total = parseFloat(itemsAndQuantities[itemsAndQuantities.length - 2]);
-    const employee = itemsAndQuantities[itemsAndQuantities.length - 1];
-    return { itemCounts, total, employee };
-  }*/
-
+/**
+ * we use this to parse the ordered items so we can properly subtract elemetns from our inventory, and update the transaction history
+ * @param {*} str 
+ * @returns nothing, but does run countItemsSoldAndManageInventory(items_sold,itemCounts,employee,total) with the proper params
+ */
   function parseItems(str) {
     const items_sold = str;
     const items = str.split('|');
@@ -247,6 +267,11 @@ function parse_transaction(str) {
     return itemCounts;
   }
 
+/**
+ * we use this to parse the menu materials so we can properly subtract elemetns from our inventory
+ * @param {*} str 
+ * @returns list of items that you can traverse
+ */
   function parseMenuMaterials(str) {
     const items_sold = str;
     const items = str.split('|');
@@ -264,6 +289,11 @@ function parse_transaction(str) {
     }
     return itemCounts;
   }
+/**
+ * removes characters not needed for on of the objects we get from the database
+ * @param {*} str 
+ * @returns a string that does not have the "object" caracters around it
+ */
   function removeChars(str) {
     
     str = str.slice(15, -3);
