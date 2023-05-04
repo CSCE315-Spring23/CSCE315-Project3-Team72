@@ -1,4 +1,4 @@
-const MenuItems = [
+const ServerDropdownItems = [
     {
         title: 'Burgers',
         path: '/burger'
@@ -25,4 +25,4 @@ const MenuItems = [
     }
 ]
 
-export default MenuItems
+export default ServerDropdownItems

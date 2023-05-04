@@ -10,21 +10,15 @@ function CustomerDropDown() {
     const handleClick = () => setClick(!click)
 
     return (
-        <>
-            <section className='drop-section'>
-                <ul onClick={handleClick} className={click ? 'drop-menu' : 'dropdown-menu'}>
-                    {MenuItems.map((item, index) => {
-                        return (
-                            <li key={index}>
-                                <Link className='menu-items' to={item.path} onClick={() => setClick(false)}>
-                                    {item.title}
-                                </Link>
-                            </li>
-                        )
-                    })}
-                </ul>
-            </section>
-        </>
+        MenuItems.map((item, index) => {
+            return (
+                <li key={index}>
+                    <Link className='dropdown-item menu-items' to={item.path} onClick={() => setClick(false)}>
+                        {item.title}
+                    </Link>
+                </li>
+            )
+        })
     )
 }
 

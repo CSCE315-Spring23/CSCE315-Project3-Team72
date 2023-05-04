@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import {View, TextInput} from 'react-native';
 import BurgerMenu from './Pages/BurgerMenu';
 import Transaction from './HelperClasses/Transaction';
-import Navbar from './HelperClasses/Navbar';
+import RevNavbar from './HelperClasses/RevNavbar';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import SandwichMenu from './Pages/SandwichMenu';
 import SweetsMenu from './Pages/SweetsMenu';

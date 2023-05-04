@@ -1,10 +1,10 @@
-import Navbar from './Navbar';
+import RevNavbar from './RevNavbar';
 
 const Header = () => {
   return (
     <header>
       <div className="nav-area">
-        <Navbar />
+        <RevNavbar />
       </div>
     </header>
   );
