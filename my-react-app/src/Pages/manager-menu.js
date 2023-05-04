@@ -2,6 +2,7 @@ import React from 'react';
 import './manager-menu.css';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.css'
 
 const serverEndpoint = "http://localhost:3001";
 
