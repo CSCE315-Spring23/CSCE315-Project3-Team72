@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Menu from "../HelperClasses/Menu"
 import './StaticMenu.css'
 
-const Spacer = require('react-spacer');
 
 function getBasketTuple(menu_object) {
     const tupleArray = [];
@@ -68,10 +67,11 @@ function StaticMenu(props)
                         <div class = "block1">
                             <div class = "title"> 
                                 <h1>Burgers</h1>
+                                <p class = 'description'> 100% Beef Burgers, All-American Grown. Combos include and a small fountain drink.</p>
                             </div>
                             <div class ="panel">
                                     {burgers.map((str)  => (
-                                        <p>{str[1]} ...... {str[2]}</p>
+                                        <p class = 'meal'>{str[1]} ...... {str[2]}</p>
                                     ))}
                             </div>
                         </div>
@@ -79,10 +79,11 @@ function StaticMenu(props)
                         <div class = "block2">
                             <div class = "title"> 
                                 <h1>Baskets</h1>
+                                <p class = 'description'>All combos include a fountain drink.</p>
                             </div>
                             <div class ="panel">
                                     {baskets.map((str)  => (
-                                        <p>{str[1]} ...... {str[2]}</p>
+                                        <p class = 'meal'>{str[1]} ...... {str[2]}</p>
                                     ))}
                             </div>
                         </div>
@@ -92,17 +93,18 @@ function StaticMenu(props)
                     <div class = 'section middle'>
                             
                             <div class = 'midblockmisc'>
-                                <img src="my-react-app\public\logo512.png"></img>
+                                <img src={'https://images.sirved.com/ChIJlb7tVZiDRoYRJ6E4_nDMyKY/YAsfUc3NUm.png'}/>
 
                             </div>
 
                             <div class = "block3">
                                 <div class = "title"> 
                                     <h1>Sandwiches</h1>
+                                    <p class = 'description'> Tasty Sandwiches even Reveille will bark for. All Combos include a small fountain drink.</p>
                                 </div>
                                 <div class ="panel">
                                         {sandwich.map((str)  => (
-                                            <p>{str[1]} ...... {str[2]}</p>
+                                            <p class = 'meal'>{str[1]} ...... {str[2]}</p>
                                         ))}
                                 </div>
                             </div>
@@ -113,10 +115,11 @@ function StaticMenu(props)
                         <div class = "block4">
                             <div class = "title"> 
                                 <h1>Shakes 'N Sweets</h1>
+                                <p class = 'description'>Sweets come in many forms, Just like Aggies do.</p>
                             </div>
                             <div class ="panel">
                                 {sweets.map((str)  => (
-                                        <p>{str[1]} ...... {str[2]}</p>
+                                        <p class = 'meal'>{str[1]} ...... {str[2]}</p>
                                     ))}
                             </div>
                         </div>
@@ -124,10 +127,11 @@ function StaticMenu(props)
                         <div class = "block5">
                             <div class = "title"> 
                                 <h1>Extras</h1>
+                                <p class = 'description'>For those who want a little extra~</p>
                             </div>
                             <div class ="panelextras">
                                 {extras.map((str)  => (
-                                        <p>{str[1]} ...... {str[2]}</p>
+                                        <p class = 'meal'>{str[1]} ...... {str[2]}</p>
                                     ))}
                             </div>
                         </div>
