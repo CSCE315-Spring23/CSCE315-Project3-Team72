@@ -6,39 +6,34 @@ import logo from "./revslogo.png";
 import ManagerDropdownItems from "./ManagerItems";
 import ServerDropdownItems from "./ServerItems";
 import CustomerDropdownItems from "./CustomerItems";
+import axios from 'axios';
 
 function RevNavbar() {
+    const WEATHER_API_KEY = "8bcd0e91ddae6063e218fd0e037293f1";
 
   const [click, setClick] = useState(false)
-  const [dropdown, setDropdown] = useState(false)
-  const [customerDropdown, setCustomerDropdown] = useState(false)
-  const [managerDropdown, setManagerDropdown] = useState(false)
+  const [weatherStatus, setWeatherStatus] = useState("");
+  const [temperature, setTemperature] = useState(-1);
+
   const changeClick = () => setClick(!click)
   const closeMobileMenu = () => setClick(false)
 
-  const onMouseEnter = () => {
-      setDropdown(true)
+  const calculateTemperature = (kelvin) => {
+      setTemperature(Number((kelvin - 273.15) * (9/5) + 32).toFixed(2));
   }
 
-  const onMouseLeave = () => {
-      setDropdown(false)
-  }
+  navigator.geolocation.getCurrentPosition((pos) => {
+        let lat = pos.coords.latitude;
+        let lon = pos.coords.longitude;
 
-  const onCustomersMouseEnter = () => {
-    setCustomerDropdown(true)
-  }
-
-  const onCustomersMouseLeave = () => {
-      setCustomerDropdown(false)
-  }
-
-  const onManagerMouseEnter = () => {
-    setManagerDropdown(true)
-  }
-
-  const onManagerMouseLeave = () => {
-    setManagerDropdown(false)
-  }
+        let weather_api_url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`
+        axios.get(weather_api_url)
+            .then(function (resp) {
+                calculateTemperature(resp.data.main.temp);
+               setWeatherStatus(`${resp.data.weather[0].main}, ${temperature}`);
+            });
+    }
+  );
 
   return (
       <>
@@ -113,6 +108,10 @@ function RevNavbar() {
                                     </ul>
                                 </li>
                             </ul>
+                        </div>
+
+                        <div class="weather-guy">
+                            The weather near you is <span class="weather-data">{weatherStatus}</span>ºF
                         </div>
 
                         <Button />

@@ -35,5 +35,14 @@
     color: whitesmoke !important;
     text-decoration: none;
     padding: 8px 20px;
-    /*transition: all 0.3s ease-out;*/
+}
+
+.weather-guy {
+    color: whitesmoke;
+    margin-right: 40px;
+}
+
+.weather-data {
+    color: #61dafb;
+    font-weight: bold;
 }
