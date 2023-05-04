@@ -12,7 +12,7 @@ function RevNavbar() {
     const WEATHER_API_KEY = "8bcd0e91ddae6063e218fd0e037293f1";
 
   const [click, setClick] = useState(false)
-  const [weatherStatus, setWeatherStatus] = useState("");
+  const [weatherStatus, setWeatherStatus] = useState("a mystery");
   const [temperature, setTemperature] = useState(-1);
 
   const changeClick = () => setClick(!click)
@@ -30,7 +30,7 @@ function RevNavbar() {
         axios.get(weather_api_url)
             .then(function (resp) {
                 calculateTemperature(resp.data.main.temp);
-               setWeatherStatus(`${resp.data.weather[0].main}, ${temperature}`);
+                setWeatherStatus(`${resp.data.weather[0].main}, ${temperature}`);
             });
     }
   );
