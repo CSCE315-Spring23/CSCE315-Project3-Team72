@@ -7,7 +7,8 @@ const WEATHER_API_KEY = "8bcd0e91ddae6063e218fd0e037293f1";
 const weatherResponses = [
     "clear, a perfect day for Rev's American Grill!",
     "a little rainy, but water never hurt anyone, let's go to Rev's!",
-    "a mystery. Either way, head to Rev's for a mid af burger!"
+    "a mystery. Either way, head to Rev's for a burger!",
+    "cloudy, so come inside and enjoy a burger at Rev's!"
 ];
 
 function HomePage(props) {
@@ -20,11 +21,15 @@ function HomePage(props) {
             let weather_api_url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`
             axios.get(weather_api_url)
                 .then(function (resp) {
+                    console.log(resp.data.weather[0].main);
                     if(resp.data.weather[0].main === "Rain") {
                         setResponseIndex(1);
                     }
                     else if(resp.data.weather[0].main === "Clear") {
                         setResponseIndex(0);
+                    }
+                    else if(resp.data.weather[0].main == "Clouds") {
+                        setResponseIndex(3);
                     }
                 });
         }
