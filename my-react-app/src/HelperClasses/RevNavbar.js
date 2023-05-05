@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Button from './Button'
 import { Link } from 'react-router-dom'
 import './RevNavbar.css'
@@ -7,7 +7,8 @@ import ManagerDropdownItems from "./ManagerItems";
 import ServerDropdownItems from "./ServerItems";
 import CustomerDropdownItems from "./CustomerItems";
 import axios from 'axios';
-import TTS from './TTS'
+import TTS from './TTS';
+import { UserContext } from '../App'
 
 var BigButtonOn = false;
 var toggle = false;
@@ -55,12 +56,13 @@ function bigbutton() {
 }
 
 function RevNavbar() {
+    const { isColorblind, setColorblind } = useContext(UserContext);
+
     const WEATHER_API_KEY = "8bcd0e91ddae6063e218fd0e037293f1";
 
   const [click, setClick] = useState(false)
   const [weatherStatus, setWeatherStatus] = useState("a mystery");
   const [temperature, setTemperature] = useState(-1);
-    const [colorblindMode, setColorblindMode] = useState(false);
 
   const changeClick = () => setClick(!click)
   const closeMobileMenu = () => setClick(false)
@@ -81,15 +83,11 @@ function RevNavbar() {
             });
     }
   );
-    function toggleColorblind() {
-        setColorblindMode(!colorblindMode);
-        console.log(colorblindMode)
-    }
 
   return (
       <>
           <section>
-              <nav className="navbar navbar-expand-lg bg-body-tertiary">
+              <nav className={`navbar navbar-expand-lg bg-body-tertiary ${isColorblind ? "colorblind" : ""}`}>
                     <div class="container-fluid">
                         <Link to='/' className='logo'><i className='fas fa-home' />
                             <img scr={logo}></img>
@@ -102,13 +100,13 @@ function RevNavbar() {
                         <div class="collapse navbar-collapse" id="navbarNavDropdown">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <Link to="/" className='nav-link' onClick={closeMobileMenu}> Home </Link>
+                                    <Link to="/" className={`${isColorblind ? "colorblind" : "nav-link"}`} onClick={closeMobileMenu}> Home </Link>
                                 </li>
                                 <li class="nav-item">
-                                    <Link to="/static-menu" className='nav-link' onClick={closeMobileMenu}> Menu </Link>
+                                    <Link to="/static-menu" className={`${isColorblind ? "colorblind" : "nav-link"}`} onClick={closeMobileMenu}> Menu </Link>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                                    <a className={`dropdown-toggle ${isColorblind ? "colorblind" : "nav-link"}`} role="button" data-bs-toggle="dropdown"
                                        aria-expanded="false">
                                         Customers
                                     </a>
@@ -125,7 +123,7 @@ function RevNavbar() {
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                                    <a className={`dropdown-toggle ${isColorblind ? "colorblind" : "nav-link"}`} role="button" data-bs-toggle="dropdown"
                                        aria-expanded="false">
                                         Servers
                                     </a>
@@ -142,7 +140,7 @@ function RevNavbar() {
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                                    <a className={`dropdown-toggle ${isColorblind ? "colorblind" : "nav-link"}`} role="button" data-bs-toggle="dropdown"
                                        aria-expanded="false">
                                         Managers
                                     </a>
@@ -160,14 +158,14 @@ function RevNavbar() {
                                 </li>
 
                                 <li class="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                                    <a className={`dropdown-toggle ${isColorblind ? "colorblind" : "nav-link"}`} role="button" data-bs-toggle="dropdown"
                                        aria-expanded="false">
                                         Accessibility
                                     </a>
                                     <ul className="dropdown-menu">
                                         <li>
                                             <button className = 'dropdown-item btn-menu' onClick={bigbutton}>Big-Button Mode</button>
-                                            <button className = 'dropdown-item btn-menu' onClick={toggleColorblind}>Color Blind Mode</button>
+                                            <button className = 'dropdown-item btn-menu' onClick={() => setColorblind(!isColorblind)}>Color Blind Mode</button>
                                         </li>
                                     </ul>
                                 </li>
@@ -175,7 +173,7 @@ function RevNavbar() {
                         </div>
 
                         <div class="other-options">
-                            <div class="weather-text">
+                            <div class={`weather-text ${isColorblind ? "colorblind" : ""}`}>
                                 The weather near you is <span class="weather-data">{weatherStatus}</span>ºF
                             </div>
                             <TTS />

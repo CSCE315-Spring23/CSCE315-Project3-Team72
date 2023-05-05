@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import styled from "styled-components";
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, useContext, createContext} from "react";
 import {View, TextInput} from 'react-native';
 import BurgerMenu from './Pages/BurgerMenu';
 import Transaction from './HelperClasses/Transaction';
@@ -27,8 +27,10 @@ import CustomerSandwichMenu from './Pages/CustomerSandwichMenu';
 import CustomerSweetsMenu from './Pages/CustomerSweetsMenu';
 import CustomerExtrasMenu from './Pages/CustomerExtrasMenu';
 
+export const UserContext = createContext(null);
 
 function App() {
+  const [isColorblind, setColorblind] = useState(false);
 
   var url = "http://localhost:3001/user"
   const [message, setMessage] = useState("");
@@ -52,27 +54,29 @@ function App() {
     <>
       <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
       <Router>
-      <Header/>
-      <Routes>
-        <Route path='/'element={<HomePage/>}/>
-        <Route path='/burger' element={<BurgerMenu json={message} transaction={current_transaction}/>} />
-        <Route path='/customer-burger' element={<CustomerBurgerMenu json={message} transaction={current_transaction}/>} />
-        <Route path='/customer-basket' element={<CustomerBasketMenu json={message} transaction={current_transaction}/>} />
-        <Route path='/customer-sandwich' element={<CustomerSandwichMenu json={message} transaction={current_transaction}/>} />
-        <Route path='/customer-sweets' element={<CustomerSweetsMenu json={message} transaction={current_transaction}/>} />
-        <Route path='/customer-extras' element={<CustomerExtrasMenu json={message} transaction={current_transaction}/>} />
-        <Route path='/sandwich' element={<SandwichMenu json={message} transaction={current_transaction}/>} />
-        <Route path='/sweets' element={<SweetsMenu json={message} transaction={current_transaction}/>} />
-        <Route path='/extras' element={<ExtrasMenu json={message} transaction={current_transaction}/>} />
-        <Route path='/basket' element={<BasketMenu json={message} transaction={current_transaction}/>} />
-        <Route path='/complete-transaction' element={<EditTransaction json={message} transaction={current_transaction}/>} />
-        <Route path='/static-menu' element={<StaticMenu json={message}/>} />
-        <Route path='/manager-inventory' element={<ManagerInventory/>}/>
-        <Route path='/manager-menu' element={<ManagerMenu/>}/>
-        <Route path='/manager-xz' element={<ManagerXZReport/>}/>
-        <Route path='/manager-restock' element={<ManagerRestockReport/>}/>
-        <Route path='/manager-sales' element={<ManagerSalesReport/>}/>
-      </Routes>
+      <UserContext.Provider value={{ isColorblind, setColorblind }}>
+        <Header/>
+        <Routes>
+          <Route path='/'element={<HomePage/>}/>
+          <Route path='/burger' element={<BurgerMenu json={message} transaction={current_transaction}/>} />
+          <Route path='/customer-burger' element={<CustomerBurgerMenu json={message} transaction={current_transaction}/>} />
+          <Route path='/customer-basket' element={<CustomerBasketMenu json={message} transaction={current_transaction}/>} />
+          <Route path='/customer-sandwich' element={<CustomerSandwichMenu json={message} transaction={current_transaction}/>} />
+          <Route path='/customer-sweets' element={<CustomerSweetsMenu json={message} transaction={current_transaction}/>} />
+          <Route path='/customer-extras' element={<CustomerExtrasMenu json={message} transaction={current_transaction}/>} />
+          <Route path='/sandwich' element={<SandwichMenu json={message} transaction={current_transaction}/>} />
+          <Route path='/sweets' element={<SweetsMenu json={message} transaction={current_transaction}/>} />
+          <Route path='/extras' element={<ExtrasMenu json={message} transaction={current_transaction}/>} />
+          <Route path='/basket' element={<BasketMenu json={message} transaction={current_transaction}/>} />
+          <Route path='/complete-transaction' element={<EditTransaction json={message} transaction={current_transaction}/>} />
+          <Route path='/static-menu' element={<StaticMenu json={message}/>} />
+          <Route path='/manager-inventory' element={<ManagerInventory/>}/>
+          <Route path='/manager-menu' element={<ManagerMenu/>}/>
+          <Route path='/manager-xz' element={<ManagerXZReport/>}/>
+          <Route path='/manager-restock' element={<ManagerRestockReport/>}/>
+          <Route path='/manager-sales' element={<ManagerSalesReport/>}/>
+        </Routes>
+      </UserContext.Provider>
       </Router>
     </>
   );

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, useContext} from "react";
 import Menu from "../HelperClasses/Menu"
 import {View, TextInput} from 'react-native';
 import Button from "../HelperClasses/Button"
 import './Customer.css'
+import { UserContext } from "../App"
 
 const Spacer = require('react-spacer');
 
@@ -15,6 +16,8 @@ function useForceUpdate(){
 
 
 function CustomerBasketMenu(props) {
+  const {isColorblind, setColorblind} = useContext(UserContext);
+  
   var currentMenu = ["Revs Burger", "Doublestack Burger", "idk", "burger 4", "burger 5", "burger 6", "burger 7", "burger 8", "burger 9"]
   const [currentPage, updatePage] = useState(0);
   const [orderText, updateOrderText] = useState("Current Order");
@@ -279,6 +282,7 @@ function CustomerBasketMenu(props) {
   ]
 
   function CustomerMenuItem(props) {
+
     const index = props.index;
     const name = menu_object.basket_name_array[index + (currentPage * 9)];
     const price = menu_object.basket_price_array[index + (currentPage * 9)];
@@ -288,11 +292,11 @@ function CustomerBasketMenu(props) {
     const text = texts[index];
 
     return(
-        <div class="customer-container">
+        <div class={`customer-container`}>
             <div class="customer-image"> 
               <img src={img}/>
             </div>
-            <div class="customer-text">
+            <div class= {`customer-text ${isColorblind ? "colorblind" : ""}`}>
               Item name: {name}<br/>
               Item price: {price}<br/>
               Item description: {description}<br/>
@@ -307,17 +311,17 @@ function CustomerBasketMenu(props) {
   return (
     <div className="logo-background">
       <div class="menu-buttons">
-      <div class="center">
+      <div class={`center`}>
         <CustomerMenuItem index={0}/>
         <CustomerMenuItem index={1}/>
         <CustomerMenuItem index={2}/>
       </div>
-      <div class="center">
+      <div class={`center`}>
         <CustomerMenuItem index={3}/>
         <CustomerMenuItem index={4}/>
         <CustomerMenuItem index={5}/>
       </div>
-      <div class="center">
+      <div class={`center`}>
         <CustomerMenuItem index={6}/>
         <CustomerMenuItem index={7}/>
         <CustomerMenuItem index={8}/>

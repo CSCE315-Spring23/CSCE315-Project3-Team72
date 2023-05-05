@@ -63,3 +63,8 @@
     border: none;
     text-align: center;
 }
+
+.colorblind {
+    background: #FFC20A !important;
+    color: #0C7BDC !important;
+}

@@ -1,11 +1,13 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import './manager-xzreport.css';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import {UserContext} from "../App";
 
 
 function ManagerXZReport() {
     var serverEndpoint = "http://localhost:3001";
+    const { isColorblind, setColorblind } = useContext(UserContext);
     const [transactions, setTransactions] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
 
@@ -29,7 +31,7 @@ function ManagerXZReport() {
 
     return (
         <div class="wrapper">
-            <div class="content">
+            <div class={`content ${isColorblind ? "colorblind" : ""}`}>
                 <div class="content-container">
                     <div class="info-half">
                         <div className="total-label"><span className="bold">Transaction Total:</span> ${totalPrice}

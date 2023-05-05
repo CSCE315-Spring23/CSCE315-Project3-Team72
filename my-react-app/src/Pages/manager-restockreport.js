@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import './manager-restockreport.css';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import {UserContext} from "../App";
 
 function ManagerRestockReport() {
     const serverEndpoint = "http://localhost:3001";
+    const { isColorblind, setColorblind } = useContext(UserContext);
     const [restockList, setRestockList] = useState([]);
 
     function generateRestockReport() {
@@ -19,7 +21,7 @@ function ManagerRestockReport() {
 
     return (
         <div class="wrapper">
-            <div class="content">
+            <div class={`content ${isColorblind ? "colorblind" : ""}`}>
                 <div class="content-container">
                     <div class="info-half">
                         <button type="button" class="btn btn-secondary btn-lg generate-report-button"

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './manager-menu.css';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import {UserContext} from "../App";
 
 const serverEndpoint = "http://localhost:3001";
 
@@ -24,6 +25,7 @@ axios.get(serverEndpoint + '/query', {
     });
 
 function ManagerMenu() {
+    const { isColorblind, setColorblind } = useContext(UserContext);
     function submitChanges() {
         let id_str = document.getElementById("#id-input").value;
 
@@ -127,7 +129,7 @@ function ManagerMenu() {
 
     return (
         <div class="wrapper">
-            <div class="content">
+            <div class={`content ${isColorblind ? "colorblind" : ""}`}>
                 <div class="container">
                     <div class="input-wrapper">
                         <div class="input-form">

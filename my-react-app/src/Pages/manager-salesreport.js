@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import './manager-salesreport.css';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import {UserContext} from "../App";
 
 function ManagerSalesReport() {
     const serverEndpoint = "http://localhost:3001";
+    const { isColorblind, setColorblind } = useContext(UserContext);
     const [salesList, setSalesList] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
 
@@ -31,7 +33,7 @@ function ManagerSalesReport() {
 
     return (
         <div class="wrapper">
-            <div class="content">
+            <div class={`content ${isColorblind ? "colorblind" : ""}`}>
                 <div class="content-container">
                     <div class="info-half">
                         <div className="total-label"><span className="bold">Total:</span> ${totalPrice}

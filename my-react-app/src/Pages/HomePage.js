@@ -1,6 +1,7 @@
 import './HomePage.css';
 import axios from "axios";
-import {useState} from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../App"
 
 const WEATHER_API_KEY = "8bcd0e91ddae6063e218fd0e037293f1";
 
@@ -13,7 +14,7 @@ const weatherResponses = [
 
 function HomePage(props) {
     const [responseIndex, setResponseIndex] = useState(2);
-
+    const { isColorblind, setColorblind } = useContext(UserContext);
     navigator.geolocation.getCurrentPosition((pos) => {
             let lat = pos.coords.latitude;
             let lon = pos.coords.longitude;
@@ -38,10 +39,10 @@ function HomePage(props) {
         <div className="logo-background">
             <div class="wrapper">
                 <div class="home-page-content">
-                    <div class="init-greeting">
+                    <div class={`init-greeting ${isColorblind ? 'colorblind' : ''}`}>
                         Welcome To Rev's American Grill
                     </div>
-                    <div class="weather-info">
+                    <div class={`weather-info ${isColorblind ? 'colorblind' : ''}`}>
                         The weather is looking <span class="weather-data">{weatherResponses[responseIndex]}</span>
                     </div>
                 </div>

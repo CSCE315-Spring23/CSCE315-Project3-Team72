@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './manager-inventory.css';
 import {Link} from 'react-router-dom';
 import axios from "axios";
+import { UserContext } from "../App"
 
 const serverEndpoint = "http://localhost:3001";
 
@@ -10,6 +11,7 @@ let cur_size = -1;
 let queries = ["name", "quantity", "cost", "min", "max"];
 
 function ManagerInventory() {
+    const { isColorblind, setColorblind } = useContext(UserContext);
     function submitChanges() {
         let id_str = document.getElementById("#id-input").value;
 
@@ -134,7 +136,7 @@ function ManagerInventory() {
 
     return (
         <div class="wrapper">
-            <div class="content">
+            <div class={`content ${isColorblind ? "colorblind" : ""}`}>
                 <div class="input-wrapper">
                     <div class="container">
                         <div class="input-form">

@@ -33,18 +33,14 @@
     background-color: rgb(43, 43, 43);
     color:rgb(255, 255, 255);
     height: 900px;
-
 }
 
 .section.left{
     width: 33%;
-
 }
 
 .section.middle{
     width: 33%;
-
-    
 }
 .section.right{
     width: 33%;
@@ -52,4 +48,9 @@
 
 .midblockmisc{
     text-align: center;
+}
+
+.colorblind {
+    background: #FFC20A !important;
+    color: #0C7BDC !important;
 }

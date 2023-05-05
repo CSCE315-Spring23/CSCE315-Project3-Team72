@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Menu from "../HelperClasses/Menu"
+import { UserContext } from '../App'
 import './StaticMenu.css'
 const Spacer = require('react-spacer');
 
@@ -46,6 +47,8 @@ function getExtrasTuple(menu_object) {
 
 function StaticMenu(props) 
 {
+    const { isColorblind, setColorblind } = useContext(UserContext)
+
     const menu_object = new Menu(props.json);
     
     const baskets = getBasketTuple(menu_object);
@@ -56,15 +59,15 @@ function StaticMenu(props)
 
 
     return (
-            <div class = 'body'>
-                <div class = 'row'>
-                    <div class = "section left">
+            <div class = {`body ${isColorblind ? "colorblind" : ""}`}>
+                <div class = {`row ${isColorblind ? "colorblind" : ""}`}>
+                    <div class = {`section left ${isColorblind ? "colorblind" : ""}`}>
                         <div class = "block1">
-                            <div class = "title"> 
-                                <h1>Burgers</h1>
-                                <p class = 'description'> 100% Beef Burgers, All-American Grown. Combos include and a small fountain drink.</p>
+                            <div class = {`title ${isColorblind ? "colorblind" : ""}`}> 
+                                <h1 class={`${isColorblind ? "colorblind" : ""}`}>Burgers</h1>
+                                <p class = {`description ${isColorblind ? "colorblind" : ""}`}> 100% Beef Burgers, All-American Grown. Combos include and a small fountain drink.</p>
                             </div>
-                            <div class ="panel">
+                            <div class ={`panel ${isColorblind ? "colorblind" : ""}`}>
                                     {
                                         burgers.map((str)  => (
                                             <p class = 'meal'>{str[1]} ...... {str[2]}</p>
@@ -74,16 +77,16 @@ function StaticMenu(props)
                         </div>
 
                         <div class = "block2">
-                            <div class = "title"> 
+                            <div class = {`title ${isColorblind ? "colorblind" : ""}`}> 
                                 <h1>Baskets</h1>
                             </div>
-                            <div class ="panel">
+                            <div class ={`panel ${isColorblind ? "colorblind" : ""}`}>
                                     {
                                         baskets.map((str)  => (
                                             <p>{str[1]} ...... {str[2]}</p>
                                         ))
                                     }
-                                <p class = 'description'>All combos include a fountain drink.</p>
+                                <p class = {`description ${isColorblind ? "colorblind" : ""}`}>All combos include a fountain drink.</p>
                             </div>
                         </div>
                     </div>
@@ -93,11 +96,11 @@ function StaticMenu(props)
                                 <img src={'https://images.sirved.com/ChIJlb7tVZiDRoYRJ6E4_nDMyKY/YAsfUc3NUm.png'}/>
                             </div>
                             <div class = "block3">
-                                <div class = "title"> 
+                                <div class = {`title ${isColorblind ? "colorblind" : ""}`}> 
                                     <h1>Sandwiches</h1>
-                                    <p class = 'description'> Tasty Sandwiches even Reveille will bark for. All Combos include a small fountain drink.</p>
+                                    <p class = {`description ${isColorblind ? "colorblind" : ""}`}> Tasty Sandwiches even Reveille will bark for. All Combos include a small fountain drink.</p>
                                 </div>
-                                <div class ="panel">
+                                <div class ={`panel ${isColorblind ? "colorblind" : ""}`}>
                                         {sandwich.map((str)  => (
                                             <p class = 'meal'>{str[1]} ...... {str[2]}</p>
                                         ))}
@@ -108,11 +111,11 @@ function StaticMenu(props)
 
                     <div class = 'section right'>
                         <div class = "block4">
-                            <div class = "title"> 
+                            <div class = {`title ${isColorblind ? "colorblind" : ""}`}> 
                                 <h1>Shakes 'N Sweets</h1>
-                                <p class = 'description'>Sweets come in many forms, Just like Aggies do.</p>
+                                <p class = {`description ${isColorblind ? "colorblind" : ""}`}>Sweets come in many forms, Just like Aggies do.</p>
                             </div>
-                            <div class ="panel">
+                            <div class ={`panel ${isColorblind ? "colorblind" : ""}`}>
                                 {
                                     sweets.map((str)  => (
                                         <p class = 'meal'>{str[1]} ...... {str[2]}</p>
@@ -122,16 +125,16 @@ function StaticMenu(props)
                         </div>
 
                         <div class = "block5">
-                            <div class = "title"> 
+                            <div class = {`title ${isColorblind ? "colorblind" : ""}`}> 
                                 <h1>Extras</h1>
                             </div>
-                            <div class ="panelextras">
+                            <div class ={`panelextras ${isColorblind ? "colorblind" : ""}`}>
                                 {
                                     extras.map((str)  => (
                                         <p>{str[1]} ...... {str[2]}</p>
                                     ))
                                 }
-                                <p class = 'description'>For those who want a little extra~</p>
+                                <p class = {`description ${isColorblind ? "colorblind" : ""}`}>For those who want a little extra~</p>
                             </div>
                         </div>
                     </div>

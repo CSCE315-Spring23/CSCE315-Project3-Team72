@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, useContext} from "react";
 import Menu from "../HelperClasses/Menu"
 import {View, TextInput} from 'react-native';
 import Button from "../HelperClasses/Button"
+import { UserContext } from "../App"
 import './Customer.css'
 
 const Spacer = require('react-spacer');
@@ -15,6 +16,7 @@ function useForceUpdate(){
 
 
 function CustomerSandwichMenu(props) {
+  const { isColorblind, setColorblind } = useContext(UserContext)
   var currentMenu = ["Revs Burger", "Doublestack Burger", "idk", "burger 4", "burger 5", "burger 6", "burger 7", "burger 8", "burger 9"]
   const [currentPage, updatePage] = useState(0);
   const [orderText, updateOrderText] = useState("Current Order");
@@ -308,7 +310,7 @@ function CustomerSandwichMenu(props) {
             <div class="customer-image"> 
               <img src={img}/>
             </div>
-            <div class="customer-text">
+            <div class={`customer-text ${isColorblind ? "colorblind" : ""}`}>
               Item name: {name}<br/>
               Item price: {price}<br/>
               Item description: {description}<br/>
