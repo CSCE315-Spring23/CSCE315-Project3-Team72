@@ -22,13 +22,14 @@
     gap: 0 10px;
     width: 70vw;
     justify-content: end;
-    margin-right: 35px;
+    margin-right: 40px;
 }
 
 .nav-item {
     display: flex;
     align-items: center;
     height: 80px;
+    padding: 20px
 }
 
 .nav-link {
@@ -45,4 +46,17 @@
 .weather-data {
     color: #61dafb;
     font-weight: bold;
+}
+
+.btn-menu{
+    outline: none;
+    background-color: #fff;
+    border: none;
+    text-align: center;
+}
+.btn-menu:hover{
+    outline: none;
+    background-color: #dbdbdb;
+    border: none;
+    text-align: center;
 }
