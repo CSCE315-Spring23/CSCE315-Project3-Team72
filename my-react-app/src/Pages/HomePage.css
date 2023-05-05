@@ -4,8 +4,29 @@
     justify-content: center;
     flex-direction: column;
     min-height: 10vh;
-    margin-left: 10vh;
+    /*margin-left: 10vh;*/
     color:darkgoldenrod
+}
+
+.init-greeting {
+    margin-top: 30px;
+    font-size: 60px;
+}
+
+.wrapper {
+    font-family: "Trebuchet MS";
+    text-align: center;
+}
+
+.weather-info {
+    font-size: 30px;
+    margin-top: 50px;
+    color: whitesmoke;
+}
+
+.weather-data {
+    font-weight: bold;
+    color: #61dafb;
 }
 
 .logo-background {
@@ -18,5 +39,4 @@
     font-size:50px;
     background-repeat:no-repeat; 
     background-position: center center;
-
   }

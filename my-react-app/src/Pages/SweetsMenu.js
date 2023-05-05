@@ -34,6 +34,7 @@ const Button = styled.button`
   border-radius: 5px;
   outline: 0;
   text-transform: uppercase;
+  font-size: small;
   margin: 10px 0px;
   cursor: pointer;
   height: 100px;
@@ -53,33 +54,6 @@ const Button = styled.button`
 Button.defaultProps = {
   theme: "gray"
 };
-
-const ButtonToggle = styled(Button)`
-  opacity: 0.7;
-  ${({ active }) =>
-    active &&
-    `
-    opacity: 1; 
-  `}
-`;
-
-const Tab = styled.button`
-  padding: 10px 30px;
-  cursor: pointer;
-  opacity: 0.6;
-  background: white;
-  border: 0;
-  outline: 0;
-
-  border-bottom: 2px solid transparent;
-  transition: ease border-bottom 250ms;
-  ${({ active }) =>
-    active &&
-    `
-    border-bottom: 2px solid black;
-    opacity: 1;
-  `}
-`;
 
 
 function SweetsMenu(props) {
@@ -104,7 +78,7 @@ function SweetsMenu(props) {
     let current_transaction = props.transaction;
   
     useEffect(() =>{
-      updateText();
+      updateText(currentPage);
     }, [])
     
     
@@ -131,7 +105,7 @@ function SweetsMenu(props) {
     };
   
     
-    function updateText() {
+    function updateText(currentPage) {
   
       for (var i = 0; i < 9; i++) {
         switch(i) {
@@ -204,6 +178,7 @@ function SweetsMenu(props) {
             break;
         }
       }
+      updateOrderText(current_transaction.to_string());
   
       forceUpdate();
       /*updateMenuButton1Text(currentMenu[currentPage * 9]);
@@ -278,14 +253,14 @@ function SweetsMenu(props) {
       var new_page = currentPage + 1;
       updatePage(new_page);
       console.log(currentPage);
-      updateText();
+      updateText(new_page);
     }
   
     function previousButtonClick() {
-      var new_page = currentPage - 1
+      var new_page = currentPage - 1;
       updatePage(new_page);
       console.log(currentPage);
-      updateText();
+      updateText(new_page);
     }
   
     return (

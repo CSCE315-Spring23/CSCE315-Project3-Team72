@@ -113,17 +113,6 @@ function ManagerInventory() {
         }
     }
 
-    /*
-
-    Ice Cream
-
-Id: 18
-Price: 0.76
-Quantity: 103
-Min Amount: 100
-Max Amount: 200
-     */
-
     function loadTable() {
         axios.get(serverEndpoint + '/query', {
             params: {

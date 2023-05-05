@@ -14,7 +14,7 @@ function useForceUpdate(){
 }
 
 
-function CustomerBurgerMenu(props) {
+function CustomerSandwichMenu(props) {
   var currentMenu = ["Revs Burger", "Doublestack Burger", "idk", "burger 4", "burger 5", "burger 6", "burger 7", "burger 8", "burger 9"]
   const [currentPage, updatePage] = useState(0);
   const [orderText, updateOrderText] = useState("Current Order");
@@ -69,67 +69,67 @@ function CustomerBurgerMenu(props) {
     for (var i = 0; i < 9; i++) {
       switch(i) {
         case 0:
-          updateMenuButton1Text(menu_object.burger_name_array[i + (currentPage * 9)]);
+          updateMenuButton1Text(menu_object.sandwich_name_array[i + (currentPage * 9)]);
           break;
         case 1:
-          if ((i + (currentPage * 9)) < menu_object.burger_name_array.length) {
-            updateMenuButton2Text(menu_object.burger_name_array[i + (currentPage * 9)]);
+          if ((i + (currentPage * 9)) < menu_object.sandwich_name_array.length) {
+            updateMenuButton2Text(menu_object.sandwich_name_array[i + (currentPage * 9)]);
           }
           else {
             updateMenuButton2Text(null);
           }
           break;
         case 2:
-          if ((i + (currentPage * 9)) < menu_object.burger_name_array.length) {
-            updateMenuButton3Text(menu_object.burger_name_array[i + (currentPage * 9)]);
+          if ((i + (currentPage * 9)) < menu_object.sandwich_name_array.length) {
+            updateMenuButton3Text(menu_object.sandwich_name_array[i + (currentPage * 9)]);
           }
           else {
             updateMenuButton3Text(null);
           }
           break;
         case 3:
-          if ((i + (currentPage * 9)) < menu_object.burger_name_array.length) {
-            updateMenuButton4Text(menu_object.burger_name_array[i + (currentPage * 9)]);
+          if ((i + (currentPage * 9)) < menu_object.sandwich_name_array.length) {
+            updateMenuButton4Text(menu_object.sandwich_name_array[i + (currentPage * 9)]);
           }
           else {
             updateMenuButton4Text(null);
           }
           break;
         case 4:
-          if ((i + (currentPage * 9)) < menu_object.burger_name_array.length) {
-            updateMenuButton5Text(menu_object.burger_name_array[i + (currentPage * 9)]);
+          if ((i + (currentPage * 9)) < menu_object.sandwich_name_array.length) {
+            updateMenuButton5Text(menu_object.sandwich_name_array[i + (currentPage * 9)]);
           }
           else {
             updateMenuButton5Text(null);
           }
           break;
         case 5:
-          if ((i + (currentPage * 9)) < menu_object.burger_name_array.length) {
-            updateMenuButton6Text(menu_object.burger_name_array[i + (currentPage * 9)]);
+          if ((i + (currentPage * 9)) < menu_object.sandwich_name_array.length) {
+            updateMenuButton6Text(menu_object.sandwich_name_array[i + (currentPage * 9)]);
           }
           else {
             updateMenuButton6Text(null);
           }
           break;
         case 6:
-          if ((i + (currentPage * 9)) < menu_object.burger_name_array.length) {
-            updateMenuButton7Text(menu_object.burger_name_array[i + (currentPage * 9)]);
+          if ((i + (currentPage * 9)) < menu_object.sandwich_name_array.length) {
+            updateMenuButton7Text(menu_object.sandwich_name_array[i + (currentPage * 9)]);
           }
           else {
             updateMenuButton7Text(null);
           }
           break;
         case 7:
-          if ((i + (currentPage * 9)) < menu_object.burger_name_array.length) {
-            updateMenuButton8Text(menu_object.burger_name_array[i + (currentPage * 9)]);
+          if ((i + (currentPage * 9)) < menu_object.sandwich_name_array.length) {
+            updateMenuButton8Text(menu_object.sandwich_name_array[i + (currentPage * 9)]);
           }
           else {
             updateMenuButton8Text(null);
           }
           break;
         case 8:
-          if ((i + (currentPage * 9)) < menu_object.burger_name_array.length) {
-            updateMenuButton9Text(menu_object.burger_name_array[i + (currentPage * 9)]);
+          if ((i + (currentPage * 9)) < menu_object.sandwich_name_array.length) {
+            updateMenuButton9Text(menu_object.sandwich_name_array[i + (currentPage * 9)]);
           }
           else {
             updateMenuButton9Text(null);
@@ -155,57 +155,57 @@ function CustomerBurgerMenu(props) {
   //updateText();
 
   function menuButton1Click() {
-    current_transaction.add_to_transaciton(menu_object.burger_id_array[0 + (currentPage * 9)] - 1); 
-    console.log(menu_object.burger_id_array[0 + (currentPage * 9)]);
+    current_transaction.add_to_transaciton(menu_object.sandwich_id_array[0 + (currentPage * 9)] - 1); 
+    console.log(menu_object.sandwich_id_array[0 + (currentPage * 9)]);
     updateOrderText(current_transaction.to_string());
     forceUpdate();
     menu_object.printMenu();
   }
 
   function menuButton2Click() {
-    current_transaction.add_to_transaciton(menu_object.burger_id_array[1 + (currentPage * 9)] - 1); 
+    current_transaction.add_to_transaciton(menu_object.sandwich_id_array[1 + (currentPage * 9)] - 1); 
     updateOrderText(current_transaction.to_string());
     forceUpdate();
   }
 
   function menuButton3Click() {
-    current_transaction.add_to_transaciton(menu_object.burger_id_array[2 + (currentPage * 9)] - 1); 
+    current_transaction.add_to_transaciton(menu_object.sandwich_id_array[2 + (currentPage * 9)] - 1); 
     updateOrderText(current_transaction.to_string());
     forceUpdate();
   }
 
   function menuButton4Click() {
-    current_transaction.add_to_transaciton(menu_object.burger_id_array[3 + (currentPage * 9)] - 1); 
+    current_transaction.add_to_transaciton(menu_object.sandwich_id_array[3 + (currentPage * 9)] - 1); 
     updateOrderText(current_transaction.to_string());
     forceUpdate();
   }
 
   function menuButton5Click() {
-    current_transaction.add_to_transaciton(menu_object.burger_id_array[4 + (currentPage * 9)] - 1); 
+    current_transaction.add_to_transaciton(menu_object.sandwich_id_array[4 + (currentPage * 9)] - 1); 
     updateOrderText(current_transaction.to_string());
     forceUpdate();
   }
 
   function menuButton6Click() {
-    current_transaction.add_to_transaciton(menu_object.burger_id_array[5 + (currentPage * 9)] - 1); 
+    current_transaction.add_to_transaciton(menu_object.sandwich_id_array[5 + (currentPage * 9)] - 1); 
     updateOrderText(current_transaction.to_string());
     forceUpdate();
   }
 
   function menuButton7Click() {
-    current_transaction.add_to_transaciton(menu_object.burger_id_array[6 + (currentPage * 9)] - 1); 
+    current_transaction.add_to_transaciton(menu_object.sandwich_id_array[6 + (currentPage * 9)] - 1); 
     updateOrderText(current_transaction.to_string());
     forceUpdate();
   }
 
   function menuButton8Click() {
-    current_transaction.add_to_transaciton(menu_object.burger_id_array[7 + (currentPage * 9)] - 1); 
+    current_transaction.add_to_transaciton(menu_object.sandwich_id_array[7 + (currentPage * 9)] - 1); 
     updateOrderText(current_transaction.to_string());
     forceUpdate();
   }
 
   function menuButton9Click() {
-    current_transaction.add_to_transaciton(menu_object.burger_id_array[8 + (currentPage * 9)] - 1); 
+    current_transaction.add_to_transaciton(menu_object.sandwich_id_array[8 + (currentPage * 9)] - 1); 
     updateOrderText(current_transaction.to_string());
     forceUpdate();
   }
@@ -239,28 +239,35 @@ function CustomerBurgerMenu(props) {
   }
 
   const descriptions = [
-    "Single Patty, American Cheese, Gig-em sauce, and Pickles",
-    "Double Patty, Double American Cheese, Gig-em sauce, and Pickles",
+    "Grilled Patty on Texas Toast topped with Gig-em sauce, Grilled Onions, and American Cheese",
+    "Chicken Tenders on a Toasted Bun topped with Gig-em sauce, Grilled Onions, and American Cheese",
     "Served with Lettuce, Tomato, Pickles, and Cheese",
-    "Bacon and American Cheese",
-    "Single Patty, American Cheese, Gig-em sauce, and Pickles",
-    "Double Patty, Double American Cheese, Gig-em sauce, and Pickles",
+    "Old fashioned American Grilled Cheese on Texas Toast",
+    "Grilled Patty on Texas Toast topped with Gig-em sauce, Grilled Onions, and American Cheese",
+    "Chicken Tenders on a Toasted Bun topped with Gig-em sauce, Grilled Onions, and American Cheese",
     "Served with Lettuce, Tomato, Pickles, and Cheese",
-    "Bacon and American Cheese"
+    "Old fashioned American Grilled Cheese on Texas Toast",
+    "Grilled Patty on Texas Toast topped with Gig-em sauce, Grilled Onions, and American Cheese",
+    "Chicken Tenders on a Toasted Bun topped with Gig-em sauce, Grilled Onions, and American Cheese",
+    "Served with Lettuce, Tomato, Pickles, and Cheese",
+    "Old fashioned American Grilled Cheese on Texas Toast"
   ]
 
   const images = [
-    "https://www.freepnglogos.com/uploads/burger-png/burger-png-png-images-yellow-images-12.png",
-    "https://www.freepnglogos.com/uploads/burger-png/burger-png-png-images-yellow-images-12.png",
-    "https://www.freepnglogos.com/uploads/burger-png/burger-png-png-images-yellow-images-12.png",
-    "https://www.freepnglogos.com/uploads/burger-png/burger-png-png-images-yellow-images-12.png",
-    "https://www.freepnglogos.com/uploads/burger-png/burger-png-png-images-yellow-images-12.png",
-    "https://www.freepnglogos.com/uploads/burger-png/burger-png-png-images-yellow-images-12.png",
-    "https://www.freepnglogos.com/uploads/burger-png/burger-png-png-images-yellow-images-12.png",
-    "https://www.freepnglogos.com/uploads/burger-png/burger-png-png-images-yellow-images-12.png",
-    "https://www.freepnglogos.com/uploads/burger-png/burger-png-png-images-yellow-images-12.png",
-    "https://www.freepnglogos.com/uploads/burger-png/burger-png-png-images-yellow-images-12.png",
-    "https://www.freepnglogos.com/uploads/burger-png/burger-png-png-images-yellow-images-12.png"
+    "https://static.vecteezy.com/system/resources/previews/013/442/172/non_2x/fast-food-sandwich-on-transparent-background-free-png.png",
+    "https://static.vecteezy.com/system/resources/previews/013/442/172/non_2x/fast-food-sandwich-on-transparent-background-free-png.png",
+    "https://static.vecteezy.com/system/resources/previews/013/442/172/non_2x/fast-food-sandwich-on-transparent-background-free-png.png",
+    "https://static.vecteezy.com/system/resources/previews/013/442/172/non_2x/fast-food-sandwich-on-transparent-background-free-png.png",
+    "https://static.vecteezy.com/system/resources/previews/013/442/172/non_2x/fast-food-sandwich-on-transparent-background-free-png.png",
+    "https://static.vecteezy.com/system/resources/previews/013/442/172/non_2x/fast-food-sandwich-on-transparent-background-free-png.png",
+    "https://static.vecteezy.com/system/resources/previews/013/442/172/non_2x/fast-food-sandwich-on-transparent-background-free-png.png",
+    "https://static.vecteezy.com/system/resources/previews/013/442/172/non_2x/fast-food-sandwich-on-transparent-background-free-png.png",
+    "https://static.vecteezy.com/system/resources/previews/013/442/172/non_2x/fast-food-sandwich-on-transparent-background-free-png.png",
+    "https://static.vecteezy.com/system/resources/previews/013/442/172/non_2x/fast-food-sandwich-on-transparent-background-free-png.png",
+    "https://static.vecteezy.com/system/resources/previews/013/442/172/non_2x/fast-food-sandwich-on-transparent-background-free-png.png",
+    "https://static.vecteezy.com/system/resources/previews/013/442/172/non_2x/fast-food-sandwich-on-transparent-background-free-png.png",
+    "https://static.vecteezy.com/system/resources/previews/013/442/172/non_2x/fast-food-sandwich-on-transparent-background-free-png.png",
+    "https://static.vecteezy.com/system/resources/previews/013/442/172/non_2x/fast-food-sandwich-on-transparent-background-free-png.png"
   ]
 
   const functions = [
@@ -289,8 +296,8 @@ function CustomerBurgerMenu(props) {
 
   function CustomerMenuItem(props) {
     const index = props.index;
-    const name = menu_object.burger_name_array[index + (currentPage * 9)];
-    const price = menu_object.burger_price_array[index + (currentPage * 9)];
+    const name = menu_object.sandwich_name_array[index + (currentPage * 9)];
+    const price = menu_object.sandwich_price_array[index + (currentPage * 9)];
     const description = descriptions[index + (currentPage * 9)];
     const img = images[index + (currentPage * 9)];
     const click = functions[index];
@@ -345,4 +352,4 @@ function CustomerBurgerMenu(props) {
   );
 }
 
-  export default CustomerBurgerMenu;
+  export default CustomerSandwichMenu;

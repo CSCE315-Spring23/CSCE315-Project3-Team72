@@ -8,12 +8,12 @@ class Transaction {
     employee_name;
   
     constructor (_json) {
-      this.clear_transaciton();
+      this.clear_transaction();
       this.json = _json;
       this.employee_name = "Shawn"
     }
   
-    clear_transaciton() {
+    clear_transaction() {
       this.item_names = [];
       this.item_prices = [];
       this.item_amounts = [];

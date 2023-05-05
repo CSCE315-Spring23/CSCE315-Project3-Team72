@@ -1,4 +1,4 @@
-const MenuItems = [
+const ManagerDropdownItems = [
     {
         title: 'Inventory',
         path: '/manager-inventory'
@@ -18,7 +18,7 @@ const MenuItems = [
     {
         title: 'Sales Report',
         path: '/manager-sales'
-    },
+    }
 ]
 
-export default MenuItems
+export default ManagerDropdownItems

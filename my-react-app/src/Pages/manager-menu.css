@@ -13,6 +13,11 @@
     gap: 150px;
 }
 
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
 .input-form {
     display: flex;
     justify-content: center;
