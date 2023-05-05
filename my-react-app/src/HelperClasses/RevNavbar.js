@@ -7,6 +7,7 @@ import ManagerDropdownItems from "./ManagerItems";
 import ServerDropdownItems from "./ServerItems";
 import CustomerDropdownItems from "./CustomerItems";
 import axios from 'axios';
+import TTS from './TTS'
 
 function RevNavbar() {
     const WEATHER_API_KEY = "8bcd0e91ddae6063e218fd0e037293f1";
@@ -107,14 +108,39 @@ function RevNavbar() {
                                         })}
                                     </ul>
                                 </li>
+
+                                <li class="nav-item dropdown">
+                                    <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                                       aria-expanded="false">
+                                        Accessibility
+                                    </a>
+                                    <ul className="dropdown-menu">
+                                                <li>
+                                                    <Link className='dropdown-item menu-items' onClick={() => setClick(false)}>
+                                                        Big Button Mode
+                                                    </Link>
+                                                    <Link className='dropdown-item menu-items' onClick={() => setClick(false)}>
+                                                        Color-Blind Mode
+                                                    </Link>
+                                                </li>
+                                    </ul>
+                                </li>
                             </ul>
+
+
+
                         </div>
+
+
+
 
                         <div class="weather-guy">
                             The weather near you is <span class="weather-data">{weatherStatus}</span>ºF
                         </div>
 
+                        <TTS />
                         <Button />
+
                 </div>
               </nav>
           </section>
