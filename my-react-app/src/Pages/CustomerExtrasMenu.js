@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Menu from "../HelperClasses/Menu"
 import {View, TextInput} from 'react-native';
-import styled from "styled-components";
-import Button from "../HelperClasses/Button";
+import Button from "../HelperClasses/Button"
 import './Customer.css'
 
 const Spacer = require('react-spacer');
@@ -14,53 +13,8 @@ function useForceUpdate(){
     // is better than directly setting `setValue(value + 1)`
 }
 
-const theme = {
-    blue: {
-      default: "#3f51b5",
-      hover: "#283593"
-    },
-    pink: {
-      default: "#e91e63",
-      hover: "#ad1457"
-    },
-    gray: {
-      default: "#969997",
-      hover: "#d4d6d5"
-    }
-};
 
-Button.defaultProps = {
-  theme: "gray"
-};
-
-const ButtonToggle = styled(Button)`
-  opacity: 0.7;
-  ${({ active }) =>
-    active &&
-    `
-    opacity: 1; 
-  `}
-`;
-
-const Tab = styled.button`
-  padding: 10px 30px;
-  cursor: pointer;
-  opacity: 0.6;
-  background: white;
-  border: 0;
-  outline: 0;
-
-  border-bottom: 2px solid transparent;
-  transition: ease border-bottom 250ms;
-  ${({ active }) =>
-    active &&
-    `
-    border-bottom: 2px solid black;
-    opacity: 1;
-  `}
-`;
-
-function CustomerBurgerMenu(props) {
+function CustomerExtrasMenu(props) {
   var currentMenu = ["Revs Burger", "Doublestack Burger", "idk", "burger 4", "burger 5", "burger 6", "burger 7", "burger 8", "burger 9"]
   const [currentPage, updatePage] = useState(0);
   const [orderText, updateOrderText] = useState("Current Order");
@@ -84,8 +38,8 @@ function CustomerBurgerMenu(props) {
   useEffect(() =>{
     updateText(currentPage);
   }, [])
-
-
+  
+  
   const MultilineTextInputExample = () => {
 
     return (
@@ -107,75 +61,75 @@ function CustomerBurgerMenu(props) {
     );
   };
 
+  
 
-
-
+  
   function updateText(currentPage) {
 
     for (var i = 0; i < 9; i++) {
       switch(i) {
         case 0:
-          updateMenuButton1Text(menu_object.burger_name_array[i + (currentPage * 9)]);
+          updateMenuButton1Text(menu_object.extras_name_array[i + (currentPage * 9)]);
           break;
         case 1:
-          if ((i + (currentPage * 9)) < menu_object.burger_name_array.length) {
-            updateMenuButton2Text(menu_object.burger_name_array[i + (currentPage * 9)]);
+          if ((i + (currentPage * 9)) < menu_object.extras_name_array.length) {
+            updateMenuButton2Text(menu_object.extras_name_array[i + (currentPage * 9)]);
           }
           else {
             updateMenuButton2Text(null);
           }
           break;
         case 2:
-          if ((i + (currentPage * 9)) < menu_object.burger_name_array.length) {
-            updateMenuButton3Text(menu_object.burger_name_array[i + (currentPage * 9)]);
+          if ((i + (currentPage * 9)) < menu_object.extras_name_array.length) {
+            updateMenuButton3Text(menu_object.extras_name_array[i + (currentPage * 9)]);
           }
           else {
             updateMenuButton3Text(null);
           }
           break;
         case 3:
-          if ((i + (currentPage * 9)) < menu_object.burger_name_array.length) {
-            updateMenuButton4Text(menu_object.burger_name_array[i + (currentPage * 9)]);
+          if ((i + (currentPage * 9)) < menu_object.extras_name_array.length) {
+            updateMenuButton4Text(menu_object.extras_name_array[i + (currentPage * 9)]);
           }
           else {
             updateMenuButton4Text(null);
           }
           break;
         case 4:
-          if ((i + (currentPage * 9)) < menu_object.burger_name_array.length) {
-            updateMenuButton5Text(menu_object.burger_name_array[i + (currentPage * 9)]);
+          if ((i + (currentPage * 9)) < menu_object.extras_name_array.length) {
+            updateMenuButton5Text(menu_object.extras_name_array[i + (currentPage * 9)]);
           }
           else {
             updateMenuButton5Text(null);
           }
           break;
         case 5:
-          if ((i + (currentPage * 9)) < menu_object.burger_name_array.length) {
-            updateMenuButton6Text(menu_object.burger_name_array[i + (currentPage * 9)]);
+          if ((i + (currentPage * 9)) < menu_object.extras_name_array.length) {
+            updateMenuButton6Text(menu_object.extras_name_array[i + (currentPage * 9)]);
           }
           else {
             updateMenuButton6Text(null);
           }
           break;
         case 6:
-          if ((i + (currentPage * 9)) < menu_object.burger_name_array.length) {
-            updateMenuButton7Text(menu_object.burger_name_array[i + (currentPage * 9)]);
+          if ((i + (currentPage * 9)) < menu_object.extras_name_array.length) {
+            updateMenuButton7Text(menu_object.extras_name_array[i + (currentPage * 9)]);
           }
           else {
             updateMenuButton7Text(null);
           }
           break;
         case 7:
-          if ((i + (currentPage * 9)) < menu_object.burger_name_array.length) {
-            updateMenuButton8Text(menu_object.burger_name_array[i + (currentPage * 9)]);
+          if ((i + (currentPage * 9)) < menu_object.extras_name_array.length) {
+            updateMenuButton8Text(menu_object.extras_name_array[i + (currentPage * 9)]);
           }
           else {
             updateMenuButton8Text(null);
           }
           break;
         case 8:
-          if ((i + (currentPage * 9)) < menu_object.burger_name_array.length) {
-            updateMenuButton9Text(menu_object.burger_name_array[i + (currentPage * 9)]);
+          if ((i + (currentPage * 9)) < menu_object.extras_name_array.length) {
+            updateMenuButton9Text(menu_object.extras_name_array[i + (currentPage * 9)]);
           }
           else {
             updateMenuButton9Text(null);
@@ -201,57 +155,57 @@ function CustomerBurgerMenu(props) {
   //updateText();
 
   function menuButton1Click() {
-    current_transaction.add_to_transaciton(menu_object.burger_id_array[0 + (currentPage * 9)] - 1);
-    console.log(menu_object.burger_id_array[0 + (currentPage * 9)]);
+    current_transaction.add_to_transaciton(menu_object.extras_id_array[0 + (currentPage * 9)] - 1); 
+    console.log(menu_object.extras_id_array[0 + (currentPage * 9)]);
     updateOrderText(current_transaction.to_string());
     forceUpdate();
     menu_object.printMenu();
   }
 
   function menuButton2Click() {
-    current_transaction.add_to_transaciton(menu_object.burger_id_array[1 + (currentPage * 9)] - 1);
+    current_transaction.add_to_transaciton(menu_object.extras_id_array[1 + (currentPage * 9)] - 1); 
     updateOrderText(current_transaction.to_string());
     forceUpdate();
   }
 
   function menuButton3Click() {
-    current_transaction.add_to_transaciton(menu_object.burger_id_array[2 + (currentPage * 9)] - 1);
+    current_transaction.add_to_transaciton(menu_object.extras_id_array[2 + (currentPage * 9)] - 1); 
     updateOrderText(current_transaction.to_string());
     forceUpdate();
   }
 
   function menuButton4Click() {
-    current_transaction.add_to_transaciton(menu_object.burger_id_array[3 + (currentPage * 9)] - 1);
+    current_transaction.add_to_transaciton(menu_object.extras_id_array[3 + (currentPage * 9)] - 1); 
     updateOrderText(current_transaction.to_string());
     forceUpdate();
   }
 
   function menuButton5Click() {
-    current_transaction.add_to_transaciton(menu_object.burger_id_array[4 + (currentPage * 9)] - 1);
+    current_transaction.add_to_transaciton(menu_object.extras_id_array[4 + (currentPage * 9)] - 1); 
     updateOrderText(current_transaction.to_string());
     forceUpdate();
   }
 
   function menuButton6Click() {
-    current_transaction.add_to_transaciton(menu_object.burger_id_array[5 + (currentPage * 9)] - 1);
+    current_transaction.add_to_transaciton(menu_object.extras_id_array[5 + (currentPage * 9)] - 1); 
     updateOrderText(current_transaction.to_string());
     forceUpdate();
   }
 
   function menuButton7Click() {
-    current_transaction.add_to_transaciton(menu_object.burger_id_array[6 + (currentPage * 9)] - 1);
+    current_transaction.add_to_transaciton(menu_object.extras_id_array[6 + (currentPage * 9)] - 1); 
     updateOrderText(current_transaction.to_string());
     forceUpdate();
   }
 
   function menuButton8Click() {
-    current_transaction.add_to_transaciton(menu_object.burger_id_array[7 + (currentPage * 9)] - 1);
+    current_transaction.add_to_transaciton(menu_object.extras_id_array[7 + (currentPage * 9)] - 1); 
     updateOrderText(current_transaction.to_string());
     forceUpdate();
   }
 
   function menuButton9Click() {
-    current_transaction.add_to_transaciton(menu_object.burger_id_array[8 + (currentPage * 9)] - 1);
+    current_transaction.add_to_transaciton(menu_object.extras_id_array[8 + (currentPage * 9)] - 1); 
     updateOrderText(current_transaction.to_string());
     forceUpdate();
   }
@@ -285,28 +239,38 @@ function CustomerBurgerMenu(props) {
   }
 
   const descriptions = [
-    "Single Patty, American Cheese, Gig-em sauce, and Pickles",
-    "Double Patty, Double American Cheese, Gig-em sauce, and Pickles",
-    "Served with Lettuce, Tomato, Pickles, and Cheese",
-    "Bacon and American Cheese",
-    "Single Patty, American Cheese, Gig-em sauce, and Pickles",
-    "Double Patty, Double American Cheese, Gig-em sauce, and Pickles",
-    "Served with Lettuce, Tomato, Pickles, and Cheese",
-    "Bacon and American Cheese"
+    "Our signature sauce!",
+    "A slightly spicy and tangy Bufallo sauce",
+    "A creamy ranch with our signature blend of herbs",
+    "A southern classic",
+    "Local honey mixed with dijon mustard",
+    "A mixture of our buffalo sauce and ranch",
+    "A medium fountain drink of your choice",
+    "A large fountain drink of your choice",
+    "A coffee percolated with care",
+    "A coffee cold brewed overnight",
+    "Our signature fries seasoned with garlic salt and herbs",
+    "Russet potatoes mashed and fried",
+    "Large sweet onion rings fried to perfection",
+    "Kettle fried potato chips"
   ]
 
   const images = [
-    "https://www.freepnglogos.com/uploads/burger-png/burger-png-png-images-yellow-images-12.png",
-    "https://www.freepnglogos.com/uploads/burger-png/burger-png-png-images-yellow-images-12.png",
-    "https://www.freepnglogos.com/uploads/burger-png/burger-png-png-images-yellow-images-12.png",
-    "https://www.freepnglogos.com/uploads/burger-png/burger-png-png-images-yellow-images-12.png",
-    "https://www.freepnglogos.com/uploads/burger-png/burger-png-png-images-yellow-images-12.png",
-    "https://www.freepnglogos.com/uploads/burger-png/burger-png-png-images-yellow-images-12.png",
-    "https://www.freepnglogos.com/uploads/burger-png/burger-png-png-images-yellow-images-12.png",
-    "https://www.freepnglogos.com/uploads/burger-png/burger-png-png-images-yellow-images-12.png",
-    "https://www.freepnglogos.com/uploads/burger-png/burger-png-png-images-yellow-images-12.png",
-    "https://www.freepnglogos.com/uploads/burger-png/burger-png-png-images-yellow-images-12.png",
-    "https://www.freepnglogos.com/uploads/burger-png/burger-png-png-images-yellow-images-12.png"
+    "https://d257c1zjbj9yqq.cloudfront.net/general-uploads/Menu-Images/_960x800_crop_center-center_none/PR-menu-side-DippingSauces-960x800.png",
+    "https://d257c1zjbj9yqq.cloudfront.net/general-uploads/Menu-Images/_960x800_crop_center-center_none/PR-menu-side-DippingSauces-960x800.png",
+    "https://d257c1zjbj9yqq.cloudfront.net/general-uploads/Menu-Images/_960x800_crop_center-center_none/PR-menu-side-DippingSauces-960x800.png",
+    "https://d257c1zjbj9yqq.cloudfront.net/general-uploads/Menu-Images/_960x800_crop_center-center_none/PR-menu-side-DippingSauces-960x800.png",
+    "https://d257c1zjbj9yqq.cloudfront.net/general-uploads/Menu-Images/_960x800_crop_center-center_none/PR-menu-side-DippingSauces-960x800.png",
+    "https://d257c1zjbj9yqq.cloudfront.net/general-uploads/Menu-Images/_960x800_crop_center-center_none/PR-menu-side-DippingSauces-960x800.png",
+    "https://d257c1zjbj9yqq.cloudfront.net/general-uploads/Menu-Images/_960x800_crop_center-center_none/PR-menu-side-DippingSauces-960x800.png",
+    "https://d257c1zjbj9yqq.cloudfront.net/general-uploads/Menu-Images/_960x800_crop_center-center_none/PR-menu-side-DippingSauces-960x800.png",
+    "https://d257c1zjbj9yqq.cloudfront.net/general-uploads/Menu-Images/_960x800_crop_center-center_none/PR-menu-side-DippingSauces-960x800.png",
+    "https://d257c1zjbj9yqq.cloudfront.net/general-uploads/Menu-Images/_960x800_crop_center-center_none/PR-menu-side-DippingSauces-960x800.png",
+    "https://d257c1zjbj9yqq.cloudfront.net/general-uploads/Menu-Images/_960x800_crop_center-center_none/PR-menu-side-DippingSauces-960x800.png",
+    "https://d257c1zjbj9yqq.cloudfront.net/general-uploads/Menu-Images/_960x800_crop_center-center_none/PR-menu-side-DippingSauces-960x800.png",
+    "https://d257c1zjbj9yqq.cloudfront.net/general-uploads/Menu-Images/_960x800_crop_center-center_none/PR-menu-side-DippingSauces-960x800.png",
+    "https://d257c1zjbj9yqq.cloudfront.net/general-uploads/Menu-Images/_960x800_crop_center-center_none/PR-menu-side-DippingSauces-960x800.png",
+    
   ]
 
   const functions = [
@@ -335,8 +299,8 @@ function CustomerBurgerMenu(props) {
 
   function CustomerMenuItem(props) {
     const index = props.index;
-    const name = menu_object.burger_name_array[index + (currentPage * 9)];
-    const price = menu_object.burger_price_array[index + (currentPage * 9)];
+    const name = menu_object.extras_name_array[index + (currentPage * 9)];
+    const price = menu_object.extras_price_array[index + (currentPage * 9)];
     const description = descriptions[index + (currentPage * 9)];
     const img = images[index + (currentPage * 9)];
     const click = functions[index];
@@ -344,7 +308,7 @@ function CustomerBurgerMenu(props) {
 
     return(
         <div class="customer-container">
-            <div class="customer-image">
+            <div class="customer-image"> 
               <img src={img}/>
             </div>
             <div class="customer-text">
@@ -358,34 +322,37 @@ function CustomerBurgerMenu(props) {
         </div>
     )
   }
-
+  
   return (
     <div className="logo-background">
       <div class="menu-buttons">
-        <div class="center">
-          <CustomerMenuItem index={0}/>
-          <CustomerMenuItem index={1}/>
-          <CustomerMenuItem index={2}/>
-        </div>
-        <div class="center">
-          <CustomerMenuItem index={3}/>
-          <CustomerMenuItem index={4}/>
-          <CustomerMenuItem index={5}/>
-        </div>
-        <div class="center">
-          <CustomerMenuItem index={6}/>
-          <CustomerMenuItem index={7}/>
-          <CustomerMenuItem index={8}/>
-        </div>
-        <div class="button-container">
-          <Button onClick={previousButtonClick}>Previous</Button>
-          <Button onClick={nextButtonClick}>Next</Button>
-        </div>
-        <Spacer grow='0.1' />
-        <MultilineTextInputExample value={orderText} onChange={e => updateOrderText(e.target.value)}/>
+      <div class="center">
+        <CustomerMenuItem index={0}/>
+        <CustomerMenuItem index={1}/>
+        <CustomerMenuItem index={2}/>
       </div>
+      <div class="center">
+        <CustomerMenuItem index={3}/>
+        <CustomerMenuItem index={4}/>
+        <CustomerMenuItem index={5}/>
+      </div>
+      <div class="center">
+        <CustomerMenuItem index={6}/>
+        <CustomerMenuItem index={7}/>
+        <CustomerMenuItem index={8}/>
+      </div>
+      <div class="button-container">
+        <Button onClick={previousButtonClick}>Previous</Button>
+        <Button onClick={nextButtonClick}>Next</Button>
+      </div>
+      <Spacer grow='0.1' />
+      <MultilineTextInputExample value={orderText} onChange={e => updateOrderText(e.target.value)}/>
+    </div>
+    <div>
+      
+    </div>
     </div>
   );
 }
 
-  export default CustomerBurgerMenu;
+  export default CustomerExtrasMenu;

@@ -22,6 +22,10 @@ import ManagerXZReport from './Pages/manager-xzreport';
 import ManagerSalesReport from './Pages/manager-salesreport';
 import EditTransaction from './Pages/EditTransaction';
 import StaticMenu from './Pages/StaticMenu';
+import CustomerBasketMenu from './Pages/CustomerBasketMenu';
+import CustomerSandwichMenu from './Pages/CustomerSandwichMenu';
+import CustomerSweetsMenu from './Pages/CustomerSweetsMenu';
+import CustomerExtrasMenu from './Pages/CustomerExtrasMenu';
 
 
 function App() {
@@ -46,8 +50,6 @@ function App() {
 
   return (
     <>
-
-
       <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
       <Router>
       <Header/>
@@ -55,6 +57,10 @@ function App() {
         <Route path='/'element={<HomePage/>}/>
         <Route path='/burger' element={<BurgerMenu json={message} transaction={current_transaction}/>} />
         <Route path='/customer-burger' element={<CustomerBurgerMenu json={message} transaction={current_transaction}/>} />
+        <Route path='/customer-basket' element={<CustomerBasketMenu json={message} transaction={current_transaction}/>} />
+        <Route path='/customer-sandwich' element={<CustomerSandwichMenu json={message} transaction={current_transaction}/>} />
+        <Route path='/customer-sweets' element={<CustomerSweetsMenu json={message} transaction={current_transaction}/>} />
+        <Route path='/customer-extras' element={<CustomerExtrasMenu json={message} transaction={current_transaction}/>} />
         <Route path='/sandwich' element={<SandwichMenu json={message} transaction={current_transaction}/>} />
         <Route path='/sweets' element={<SweetsMenu json={message} transaction={current_transaction}/>} />
         <Route path='/extras' element={<ExtrasMenu json={message} transaction={current_transaction}/>} />

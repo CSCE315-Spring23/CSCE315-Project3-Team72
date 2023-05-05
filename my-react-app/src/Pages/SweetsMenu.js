@@ -34,6 +34,7 @@ const Button = styled.button`
   border-radius: 5px;
   outline: 0;
   text-transform: uppercase;
+  font-size: small;
   margin: 10px 0px;
   cursor: pointer;
   height: 100px;
@@ -104,7 +105,7 @@ function SweetsMenu(props) {
     let current_transaction = props.transaction;
   
     useEffect(() =>{
-      updateText();
+      updateText(currentPage);
     }, [])
     
     
@@ -131,7 +132,7 @@ function SweetsMenu(props) {
     };
   
     
-    function updateText() {
+    function updateText(currentPage) {
   
       for (var i = 0; i < 9; i++) {
         switch(i) {
@@ -204,6 +205,7 @@ function SweetsMenu(props) {
             break;
         }
       }
+      updateOrderText(current_transaction.to_string());
   
       forceUpdate();
       /*updateMenuButton1Text(currentMenu[currentPage * 9]);
@@ -280,12 +282,12 @@ function SweetsMenu(props) {
       console.log(currentPage);
       updateText();
     }
-  
+
     function previousButtonClick() {
-      var new_page = currentPage - 1
+      var new_page = currentPage - 1;
       updatePage(new_page);
       console.log(currentPage);
-      updateText();
+      updateText(new_page);
     }
   
     return (

@@ -21,7 +21,6 @@ function HomePage(props) {
             let weather_api_url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`
             axios.get(weather_api_url)
                 .then(function (resp) {
-                    console.log(resp.data.weather[0].main);
                     if(resp.data.weather[0].main === "Rain") {
                         setResponseIndex(1);
                     }

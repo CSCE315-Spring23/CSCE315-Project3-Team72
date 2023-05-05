@@ -1,36 +1,32 @@
 .customer-container {
     position: relative;
     background: darkgoldenrod;
-    height: 30vh;
-    width: 50vh;
-    margin-top: 10vh;
+    margin-top: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 20px;
     box-shadow: 1px 2px 5px lightgray;
+    height: 20vh;
 }
 
 .customer-text {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    height: 10vh;
-    width: 20vh;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
-    margin-right: 5vh;
+    font-size: 10px;
+    width: 15vh;
+    margin: 10px 5px;
     color:black;
 }
 
 .customer-image {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  height: 10vh;
-  width: 10vh;
-  margin-right: 5vh;
-  margin-left: 5vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 10vh;
+    height: 10vh;
+    margin: 0 5px;
 }
 
 .customer-button {
@@ -38,4 +34,15 @@
     justify-content: center;
     flex-direction: column;
     margin-right: 2vh;
+}
+
+.center {
+    display: flex;
+    margin: 0 50px;
+}
+
+.button-container {
+    display: flex;
+    gap: 15px;
+    margin-right: 10px;
 }

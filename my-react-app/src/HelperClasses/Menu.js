@@ -25,38 +25,40 @@ class Menu {
     basket_price_array = [];
     basket_materials_array = [];
     
-  
-    constructor(json) {
-        for (const x in json) {
-            if ((json[x]["type"] == "burger") && (!this.burger_name_array.includes(json[x]["name"]))){
-              this.burger_name_array.push(json[x]["name"]);
-              this.burger_id_array.push(json[x]["id"]);
-              this.burger_price_array.push(json[x]["cost"]);
-              this.burger_materials_array.push(json[x]["materials"]);
+    json;
+
+    constructor(_json) {
+      this.json = _json;
+        for (const x in this.json) {
+            if ((this.json[x]["type"] == "burger") && (!this.burger_name_array.includes(this.json[x]["name"]))){
+              this.burger_name_array.push(this.json[x]["name"]);
+              this.burger_id_array.push(this.json[x]["id"]);
+              this.burger_price_array.push(this.json[x]["cost"]);
+              this.burger_materials_array.push(this.json[x]["materials"]);
             }
-            if ((json[x]["type"] == "sandwich") && (!this.sandwich_name_array.includes(json[x]["name"]))){
-              this.sandwich_name_array.push(json[x]["name"]);
-              this.sandwich_id_array.push(json[x]["id"]);
-              this.sandwich_price_array.push(json[x]["cost"]);
-              this.sandwich_materials_array.push(json[x]["materials"]);
+            if ((this.json[x]["type"] == "sandwich") && (!this.sandwich_name_array.includes(this.json[x]["name"]))){
+              this.sandwich_name_array.push(this.json[x]["name"]);
+              this.sandwich_id_array.push(this.json[x]["id"]);
+              this.sandwich_price_array.push(this.json[x]["cost"]);
+              this.sandwich_materials_array.push(this.json[x]["materials"]);
             }
-            if ((json[x]["type"] == "sweets") && (!this.sweets_name_array.includes(json[x]["name"]))){
-              this.sweets_name_array.push(json[x]["name"]);
-              this.sweets_id_array.push(json[x]["id"]);
-              this.sweets_price_array.push(json[x]["cost"]);
-              this.sweets_materials_array.push(json[x]["materials"]);
+            if ((this.json[x]["type"] == "sweets") && (!this.sweets_name_array.includes(this.json[x]["name"]))){
+              this.sweets_name_array.push(this.json[x]["name"]);
+              this.sweets_id_array.push(this.json[x]["id"]);
+              this.sweets_price_array.push(this.json[x]["cost"]);
+              this.sweets_materials_array.push(this.json[x]["materials"]);
             }
-            if ((json[x]["type"] == "extras") && (!this.extras_name_array.includes(json[x]["name"]))){
-              this.extras_name_array.push(json[x]["name"]);
-              this.extras_id_array.push(json[x]["id"]);
-              this.extras_price_array.push(json[x]["cost"]);
-              this.extras_materials_array.push(json[x]["materials"]);
+            if ((this.json[x]["type"] == "extras") && (!this.extras_name_array.includes(this.json[x]["name"]))){
+              this.extras_name_array.push(this.json[x]["name"]);
+              this.extras_id_array.push(this.json[x]["id"]);
+              this.extras_price_array.push(this.json[x]["cost"]);
+              this.extras_materials_array.push(this.json[x]["materials"]);
             }
-            if ((json[x]["type"] == "basket") && (!this.basket_name_array.includes(json[x]["name"]))){
-              this.basket_name_array.push(json[x]["name"]);
-              this.basket_id_array.push(json[x]["id"]);
-              this.basket_price_array.push(json[x]["cost"]);
-              this.basket_materials_array.push(json[x]["materials"]);
+            if ((this.json[x]["type"] == "basket") && (!this.basket_name_array.includes(this.json[x]["name"]))){
+              this.basket_name_array.push(this.json[x]["name"]);
+              this.basket_id_array.push(this.json[x]["id"]);
+              this.basket_price_array.push(this.json[x]["cost"]);
+              this.basket_materials_array.push(this.json[x]["materials"]);
             }
         }
     }

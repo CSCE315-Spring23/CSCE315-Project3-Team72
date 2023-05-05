@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Menu from "../HelperClasses/Menu"
 import {View, TextInput} from 'react-native';
 import styled from "styled-components";
+import Button from '../HelperClasses/Button'
 
 const Spacer = require('react-spacer');
 
@@ -26,29 +27,6 @@ const theme = {
       hover: "#d4d6d5"
     }
 };
-
-const Button = styled.button`
-  background-color: ${(props) => theme[props.theme].default};
-  color: black;
-  padding: 5px 15px;
-  border-radius: 5px;
-  outline: 0;
-  text-transform: uppercase;
-  margin: 10px 0px;
-  cursor: pointer;
-  height: 100px;
-  width: 100px;
-  box-shadow: 0px 2px 2px lightgray;
-  transition: ease background-color 250ms;
-  display: inline-block;
-  &:hover {
-    background-color: ${(props) => theme[props.theme].hover};
-  }
-  &:disabled {
-    cursor: default;
-    opacity: 0.7;
-  }
-`;
 
 Button.defaultProps = {
   theme: "gray"
@@ -104,7 +82,7 @@ function BurgerMenu(props) {
     let current_transaction = props.transaction;
   
     useEffect(() =>{
-      updateText();
+      updateText(currentPage);
     }, [])
     
     
@@ -130,7 +108,7 @@ function BurgerMenu(props) {
     };
   
     
-    function updateText() {
+    function updateText(currentPage) {
   
       for (var i = 0; i < 9; i++) {
         switch(i) {
@@ -203,6 +181,7 @@ function BurgerMenu(props) {
             break;
         }
       }
+      updateOrderText(current_transaction.to_string());
   
       forceUpdate();
       /*updateMenuButton1Text(currentMenu[currentPage * 9]);
@@ -219,56 +198,57 @@ function BurgerMenu(props) {
     //updateText();
   
     function menuButton1Click() {
-      current_transaction.add_to_transaciton(menu_object.burger_id_array[0 + (currentPage * 9)]); 
+      current_transaction.add_to_transaciton(menu_object.burger_id_array[0 + (currentPage * 9)] - 1);
+      // console.log(menu_object.burger_id_array[0 + (currentPage * 9)]);
       updateOrderText(current_transaction.to_string());
       forceUpdate();
       menu_object.printMenu();
     }
   
     function menuButton2Click() {
-      current_transaction.add_to_transaciton(menu_object.burger_id_array[1 + (currentPage * 9)]); 
+      current_transaction.add_to_transaciton(menu_object.burger_id_array[1 + (currentPage * 9)] - 1);
       updateOrderText(current_transaction.to_string());
       forceUpdate();
     }
   
     function menuButton3Click() {
-      current_transaction.add_to_transaciton(menu_object.burger_id_array[2 + (currentPage * 9)]); 
+      current_transaction.add_to_transaciton(menu_object.burger_id_array[2 + (currentPage * 9)] - 1);
       updateOrderText(current_transaction.to_string());
       forceUpdate();
     }
   
     function menuButton4Click() {
-      current_transaction.add_to_transaciton(menu_object.burger_id_array[3 + (currentPage * 9)]); 
+      current_transaction.add_to_transaciton(menu_object.burger_id_array[3 + (currentPage * 9)] - 1);
       updateOrderText(current_transaction.to_string());
       forceUpdate();
     }
   
     function menuButton5Click() {
-      current_transaction.add_to_transaciton(menu_object.burger_id_array[4 + (currentPage * 9)]); 
+      current_transaction.add_to_transaciton(menu_object.burger_id_array[4 + (currentPage * 9)] - 1);
       updateOrderText(current_transaction.to_string());
       forceUpdate();
     }
   
     function menuButton6Click() {
-      current_transaction.add_to_transaciton(menu_object.burger_id_array[5 + (currentPage * 9)]); 
+      current_transaction.add_to_transaciton(menu_object.burger_id_array[5 + (currentPage * 9)] - 1);
       updateOrderText(current_transaction.to_string());
       forceUpdate();
     }
   
     function menuButton7Click() {
-      current_transaction.add_to_transaciton(menu_object.burger_id_array[6 + (currentPage * 9)]); 
+      current_transaction.add_to_transaciton(menu_object.burger_id_array[6 + (currentPage * 9)] - 1);
       updateOrderText(current_transaction.to_string());
       forceUpdate();
     }
   
     function menuButton8Click() {
-      current_transaction.add_to_transaciton(menu_object.burger_id_array[7 + (currentPage * 9)]); 
+      current_transaction.add_to_transaciton(menu_object.burger_id_array[7 + (currentPage * 9)] - 1);
       updateOrderText(current_transaction.to_string());
       forceUpdate();
     }
   
     function menuButton9Click() {
-      current_transaction.add_to_transaciton(menu_object.burger_id_array[8 + (currentPage * 9)]); 
+      current_transaction.add_to_transaciton(menu_object.burger_id_array[8 + (currentPage * 9)] - 1);
       updateOrderText(current_transaction.to_string());
       forceUpdate();
     }
@@ -276,15 +256,16 @@ function BurgerMenu(props) {
     function nextButtonClick() {
       var new_page = currentPage + 1;
       updatePage(new_page);
-      console.log(currentPage);
-      updateText();
+      // console.log(currentPage);
+      // console.log(new_page);
+      updateText(new_page);
     }
   
     function previousButtonClick() {
       var new_page = currentPage - 1
       updatePage(new_page);
       console.log(currentPage);
-      updateText();
+      updateText(new_page);
     }
 
     const [message, setMessage] = useState("");
@@ -300,31 +281,75 @@ function BurgerMenu(props) {
 
       console.log(message)
     }
+
+    function translate(text) {
+      const API_KEY = "AIzaSyAis8uRIPDkBxKqboY80vX1Eceqqde_ZtY"
+      let url = `https://translation.googleapis.com/language/translate/v2?key=${API_KEY}`;
+      let fromLang = 'en';
+      let toLang = 'es'; // translate to spanish
+      var translated_text = "";
+
+      url += '&q=' + encodeURI(text);
+      url += `&source=${fromLang}`;
+      url += `&target=${toLang}`;
+
+      fetch(url, {
+        method: 'GET',
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        }
+      })
+      .then(res => res.json())
+      .then((data) => {
+        console.log("response from google: ", data);
+        let translation = data["data"]["translations"][0]["translatedText"];
+        const translation_array = translation.split("|");
+        for (var i = 0; i < 9; i++) {
+          menu_object.burger_name_array[i + (currentPage * 9)] = translation_array[i];
+          updateText(currentPage);
+        }
+        console.log(translation_array);
+      })
+      .catch(error => {
+        console.log("There was an error with the translation request: ", error);
+      });
+      console.log(message.toString());
+      return message.valueOf();
+    }
+
+    function returnMessage() {
+      return message;
+    }
+
+    function translate_all() {
+      let translation_text = "" + menuButton1Text + "|" + menuButton2Text + "|" + menuButton3Text + "|" + menuButton4Text + "|" + menuButton5Text + "|" + menuButton6Text + "|" + menuButton7Text + "|" + menuButton8Text + "|" + menuButton9Text;
+      translate(translation_text);
+    }
   
     return (
-      <div className="logo-background">
-        <div class="menu-buttons">
-        <div class="center">
-          <Button onClick={menuButton1Click}>{menuButton1Text}</Button>
-          <Button onClick={menuButton2Click}>{menuButton2Text}</Button>
-          <Button onClick={menuButton3Click}>{menuButton3Text}</Button>
-          <Button onClick={menuButton4Click}>{menuButton4Text}</Button>
-          <Button onClick={menuButton5Click}>{menuButton5Text}</Button>
-          <Button onClick={menuButton6Click}>{menuButton6Text}</Button>
-          <Button onClick={menuButton7Click}>{menuButton7Text}</Button>
-          <Button onClick={menuButton8Click}>{menuButton8Text}</Button>
-          <Button onClick={menuButton9Click}>{menuButton9Text}</Button>
-          <Button onClick={previousButtonClick}>Previous</Button>
-          <Button onClick={nextButtonClick}>Next</Button>
-          <Button onClick={TestStatus}>Test</Button>
+        <div className="logo-background">
+            <div class="menu-buttons">
+                <div class="center">
+                    <Button onClick={menuButton1Click}>{menuButton1Text}</Button>
+                    <Button onClick={menuButton2Click}>{menuButton2Text}</Button>
+                    <Button onClick={menuButton3Click}>{menuButton3Text}</Button>
+                    <Button onClick={menuButton4Click}>{menuButton4Text}</Button>
+                    <Button onClick={menuButton5Click}>{menuButton5Text}</Button>
+                    <Button onClick={menuButton6Click}>{menuButton6Text}</Button>
+                    <Button onClick={menuButton7Click}>{menuButton7Text}</Button>
+                    <Button onClick={menuButton8Click}>{menuButton8Text}</Button>
+                    <Button onClick={menuButton9Click}>{menuButton9Text}</Button>
+                    <Button onClick={previousButtonClick}>Previous</Button>
+                    <Button onClick={nextButtonClick}>Next</Button>
+                    <Button onClick={translate_all}>Translate</Button>
+                    </div>
+                        <Spacer grow='0.1' />
+                        <MultilineTextInputExample value={orderText} onChange={e => updateOrderText(e.target.value)}/>
+                    </div>
+                <div>
+            </div>
         </div>
-        <Spacer grow='0.1' />
-        <MultilineTextInputExample value={orderText} onChange={e => updateOrderText(e.target.value)}/>
-      </div>
-      <div>
-        
-      </div>
-      </div>
     );
   }
 

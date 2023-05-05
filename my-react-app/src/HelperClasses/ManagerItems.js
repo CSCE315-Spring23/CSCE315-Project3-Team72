@@ -18,7 +18,7 @@ const ManagerDropdownItems = [
     {
         title: 'Sales Report',
         path: '/manager-sales'
-    },
+    }
 ]
 
 export default ManagerDropdownItems

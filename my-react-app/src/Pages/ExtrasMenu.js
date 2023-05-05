@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Menu from "../HelperClasses/Menu"
+import Menu from "../HelperClasses/Menu";
 import {View, TextInput} from 'react-native';
 import styled from "styled-components";
+import Button from "../HelperClasses/Button";
 
 const Spacer = require('react-spacer');
 
@@ -26,29 +27,6 @@ const theme = {
       hover: "#d4d6d5"
     }
 };
-
-const Button = styled.button`
-  background-color: ${(props) => theme[props.theme].default};
-  color: black;
-  padding: 5px 15px;
-  border-radius: 5px;
-  outline: 0;
-  text-transform: uppercase;
-  margin: 10px 0px;
-  cursor: pointer;
-  height: 100px;
-  width: 100px;
-  box-shadow: 0px 2px 2px lightgray;
-  transition: ease background-color 250ms;
-  display: inline-block;
-  &:hover {
-    background-color: ${(props) => theme[props.theme].hover};
-  }
-  &:disabled {
-    cursor: default;
-    opacity: 0.7;
-  }
-`;
 
 Button.defaultProps = {
   theme: "gray"
@@ -104,7 +82,7 @@ function ExtrasMenu(props) {
     let current_transaction = props.transaction;
   
     useEffect(() =>{
-      updateText();
+      updateText(currentPage);
     }, [])
     
     
@@ -131,7 +109,7 @@ function ExtrasMenu(props) {
     };
   
     
-    function updateText() {
+    function updateText(currentPage) {
   
       for (var i = 0; i < 9; i++) {
         switch(i) {
@@ -204,7 +182,8 @@ function ExtrasMenu(props) {
             break;
         }
       }
-  
+      updateOrderText(current_transaction.to_string());
+
       forceUpdate();
       /*updateMenuButton1Text(currentMenu[currentPage * 9]);
       updateMenuButton2Text(currentMenu[(currentPage * 9) + 1]);
@@ -278,14 +257,14 @@ function ExtrasMenu(props) {
       var new_page = currentPage + 1;
       updatePage(new_page);
       console.log(currentPage);
-      updateText();
+      updateText(new_page);
     }
   
     function previousButtonClick() {
       var new_page = currentPage - 1
       updatePage(new_page);
       console.log(currentPage);
-      updateText();
+      updateText(new_page);
     }
   
     return (

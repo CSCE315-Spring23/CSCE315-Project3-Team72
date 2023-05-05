@@ -38,9 +38,12 @@
     padding: 8px 20px;
 }
 
-.weather-guy {
+.other-options {
     color: whitesmoke;
-    margin-right: 40px;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    margin-right: 20px;
 }
 
 .weather-data {
