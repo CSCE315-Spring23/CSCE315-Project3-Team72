@@ -8,6 +8,71 @@ import ServerDropdownItems from "./ServerItems";
 import CustomerDropdownItems from "./CustomerItems";
 import axios from 'axios';
 
+var BigButtonOn = true;
+
+// Retrieve the value of the boolean
+//BigButtonOn = localStorage.setItem("BigButtonOn", null);
+
+function bigbutton() {
+    //if(localStorage.getItem("BigButtonOn") === null) localStorage.setItem("BigButtonOn", false);
+    
+
+    window.scrollTo(0, 0)
+    var bodyRect = document.body.getBoundingClientRect();
+    
+    var items = Array.prototype.slice.call(
+      document.querySelectorAll('*')
+    ).map(function(element) {
+      var rect=element.getBoundingClientRect();
+      return {
+        element: element,
+        include: (element.tagName === "BUTTON" || element.tagName === "A" || (element.onclick != null) || window.getComputedStyle(element).cursor == "pointer"),
+        rect: {left: Math.max(rect.left - bodyRect.x, 0),
+               top: Math.max(rect.top - bodyRect.y, 0),
+               right: Math.min(rect.right - bodyRect.x, document.body.clientWidth),
+               bottom: Math.min(rect.bottom - bodyRect.y, document.body.clientHeight)},
+        text: element.textContent.trim().replace(/\s{2,}/g, ' ')
+      };
+    }).filter(item =>
+      item.include && ((item.rect.right - item.rect.left) * (item.rect.bottom - item.rect.top) >= 20));
+    
+    // Only keep inner clickable items
+    items = items.filter(x => !items.some(y => x.element.contains(y.element) && !(x == y)));
+    
+    items.forEach(function(items) {
+        console.log('item:', items);
+        try {
+            // Some code that might throw an error
+            //items.element.style.width = '200px';
+            //items.element.style.height = '50px';
+            if(BigButtonOn === true){
+                items.element.style.transform = 'scale(1.2)'; 
+               console.log("BigButtonOn: HEHEHEHHEHEHE");
+            } 
+            if(BigButtonOn === false){
+                items.element.style.transform = 'scale(1.0)';
+            }
+            
+
+            //TODO: increase the size of each button in this list, but make sure it does not overlap with other buttons, move button to the left or right if you have to
+
+            
+          } catch (error) {
+            // Handle the error
+            console.error('An error occurred for:',items,"  error: ", error);
+          }
+          finally {
+            // Handle the success
+            console.log('Completed successfully');
+          }
+      });
+      if(BigButtonOn){ 
+        BigButtonOn = false;
+      }
+      else{
+        BigButtonOn = true;
+      }
+}
 function RevNavbar() {
     const WEATHER_API_KEY = "8bcd0e91ddae6063e218fd0e037293f1";
 
@@ -38,7 +103,7 @@ function RevNavbar() {
   return (
       <>
           <section>
-              <nav className="navbar navbar-expand-lg bg-body-tertiary">
+              <nav className="navbar navbar-expand-lg bg-body-tertiary" onload={bigbutton}>
                     <div class="container-fluid">
                         <Link to='/' className='logo'><i className='fas fa-home' />
                             <img scr={logo}></img>
@@ -48,6 +113,7 @@ function RevNavbar() {
                                 aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
+                        <button onClick={bigbutton}>Click me</button>
                         <div class="collapse navbar-collapse" id="navbarNavDropdown">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
